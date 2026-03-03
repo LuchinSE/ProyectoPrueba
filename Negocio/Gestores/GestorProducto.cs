@@ -154,7 +154,7 @@ namespace Negocio.Gestores
                 loProductoMov = new ProductoMovimientoRQT
                 {
                     cNomPro = loProdMov.cNomPro,
-                    cIdeOri = loProdMov.cIdeOri,
+                    nIdeOri = loProdMov.nIdeOri,
                     nIdeDes = loProdMov.nIdeDes,
                     nCanMov = loProdMov.nCanMov,
 
@@ -163,7 +163,7 @@ namespace Negocio.Gestores
                 int confirmacion = loProdCd.mxRealizarTrazlado(loProductoMov);
 
                     loProRpt.cNomPro = loProductoMov.cNomPro;
-                    loProRpt.cIdeOri = loProductoMov.cIdeOri;
+                    loProRpt.nIdeOri = loProductoMov.nIdeOri;
                     loProRpt.nIdeDes = loProductoMov.nIdeDes;
                     loProRpt.nCanMov = loProductoMov.nCanMov;
                 

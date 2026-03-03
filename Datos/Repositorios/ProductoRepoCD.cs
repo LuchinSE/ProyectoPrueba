@@ -78,7 +78,7 @@ namespace Datos.Repositorios
             { 
                 loParametros = new DynamicParameters();
                 loParametros.Add("tnNomPro", toProducto.cNomPro);
-                loParametros.Add("tcIdeSedori", toProducto.cIdeOri);
+                loParametros.Add("tcIdeSedori", toProducto.nIdeOri);
                 loParametros.Add("tnIdeSedDes", toProducto.nIdeDes);
                 loParametros.Add("tnCantMov", toProducto.nCanMov);
                 return conn.Execute(Constantes.SP_PRODUCTO_MOVER, loParametros, commandType: CommandType.StoredProcedure);

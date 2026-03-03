@@ -110,7 +110,7 @@ namespace Negocio.Esquemas
     public class ProductoMoverRQT
     { 
         public string cNomPro { get; set; }
-        public int cIdeOri { get; set; }
+        public int nIdeOri { get; set; }
         public int nIdeDes { get; set; }
         public int nCanMov { get; set; }
     }
@@ -118,7 +118,7 @@ namespace Negocio.Esquemas
     public class ProductoMoverRPT : Error
     {
         public string cNomPro { get; set; }
-        public int cIdeOri { get; set; }
+        public int nIdeOri { get; set; }
         public int nIdeDes { get; set; }
         public int nCanMov { get; set; }
     }

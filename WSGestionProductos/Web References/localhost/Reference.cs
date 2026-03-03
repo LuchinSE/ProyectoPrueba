@@ -379,7 +379,7 @@ namespace WSGestionProductos.localhost {
         
         private string cNomProField;
         
-        private int cIdeOriField;
+        private int nIdeOriField;
         
         private int nIdeDesField;
         
@@ -396,12 +396,12 @@ namespace WSGestionProductos.localhost {
         }
         
         /// <remarks/>
-        public int cIdeOri {
+        public int nIdeOri {
             get {
-                return this.cIdeOriField;
+                return this.nIdeOriField;
             }
             set {
-                this.cIdeOriField = value;
+                this.nIdeOriField = value;
             }
         }
         
@@ -645,7 +645,7 @@ namespace WSGestionProductos.localhost {
         
         private string cNomProField;
         
-        private int cIdeOriField;
+        private int nIdeOriField;
         
         private int nIdeDesField;
         
@@ -662,12 +662,12 @@ namespace WSGestionProductos.localhost {
         }
         
         /// <remarks/>
-        public int cIdeOri {
+        public int nIdeOri {
             get {
-                return this.cIdeOriField;
+                return this.nIdeOriField;
             }
             set {
-                this.cIdeOriField = value;
+                this.nIdeOriField = value;
             }
         }
         

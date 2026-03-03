@@ -220,25 +220,27 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbMovPro_Click(object sender, EventArgs e)
         {
-            string cNomPro;
-            int nIdeOri, nIdeDes, nCanMov;
+            string lcNomPro;
+            int lnIdeOri, lnIdeDes, lnCanMov;
             WSGestionProductos loRefGestProd = new WSGestionProductos();
 
-            cNomPro = txcProMov.Text;
-            nIdeOri = Convert.ToInt32(txnIdeOri.Text);
-            nIdeDes = Convert.ToInt32(txnIdeDes.Text);
-            nCanMov = Convert.ToInt32(txnCanMov.Text);
+            lcNomPro = txcProMov.Text;
+            lnIdeOri = Convert.ToInt32(txnIdeOri.Text);
+            lnIdeDes = Convert.ToInt32(txnIdeDes.Text);
+            lnCanMov = Convert.ToInt32(txnCanMov.Text);
             if (!ValidarFormulario())
                 return;
 
-            ProductoMoverRPT l = new ProductoMoverRPT();
-            
-            ProductoEliminarRPT loProductoRpt = new ProductoEliminarRPT()
+
+            ProductoMoverRQT loProductoRpt = new ProductoMoverRQT()
             { 
-                
-            
-            
+                cNomPro = lcNomPro,
+                nIdeOri = lnIdeOri,
+                nIdeDes = lnIdeDes,
+                nCanMov = lnCanMov   
             };
+            loRefGestProd.wmTrazladarProducto(loProductoRpt);
+            Form1_Load(this, EventArgs.Empty);
 
         }
     }

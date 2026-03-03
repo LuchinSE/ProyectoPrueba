@@ -16,7 +16,7 @@ namespace Datos.Entidades
     public class ProductoMovimientoRQT
     {
         public string cNomPro { get; set; }
-        public int cIdeOri { get; set; }
+        public int nIdeOri { get; set; }
         public int nIdeDes { get; set; }
         public int nCanMov { get; set; }
     }
