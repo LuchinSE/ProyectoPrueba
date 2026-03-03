@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="wmListarProductos">
+        <s:complexType />
+      </s:element>
+      <s:element name="wmListarProductosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wmListarProductosResult" type="tns:ProductosRPT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductosRPT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="paProductos" type="tns:ArrayOfProductoCN" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pcCodigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcMensaje" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductoCN">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductoCN" nillable="true" type="tns:ProductoCN" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductoCN">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="wmCrearProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="toProductoRequest" type="tns:ProductoInsertarRQT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoInsertarRQT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="wmCrearProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wmCrearProductoResult" type="tns:ProductoInsertarRPT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoInsertarRPT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="wmActualizarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="toProductoRequest" type="tns:ProductoActualizarRQT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoActualizarRQT">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="wmActualizarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wmActualizarProductoResult" type="tns:ProductoActualizarRPT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoActualizarRPT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="pcDesPro" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="pnPrePro" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="pnStoPro" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ptFecPro" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="pnIdeSed" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="wmEliminarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="toProductoEliminar" type="tns:ProductoEliminarRQT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoEliminarRQT">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="wmEliminarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wmEliminarProductoResult" type="tns:ProductoEliminarRPT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoEliminarRPT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="pnIdePro" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="wmTrazladarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="toProductoMover" type="tns:ProductoMoverRQT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoMoverRQT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cNomPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cIdeOri" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="nIdeDes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="nCanMov" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="wmTrazladarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wmTrazladarProductoResult" type="tns:ProductoMoverRPT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoMoverRPT">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Error">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="cNomPro" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="cIdeOri" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="nIdeDes" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="nCanMov" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="wmListarProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:wmListarProductos" />
+  </wsdl:message>
+  <wsdl:message name="wmListarProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:wmListarProductosResponse" />
+  </wsdl:message>
+  <wsdl:message name="wmCrearProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmCrearProducto" />
+  </wsdl:message>
+  <wsdl:message name="wmCrearProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmCrearProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="wmActualizarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmActualizarProducto" />
+  </wsdl:message>
+  <wsdl:message name="wmActualizarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmActualizarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="wmEliminarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmEliminarProducto" />
+  </wsdl:message>
+  <wsdl:message name="wmEliminarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmEliminarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="wmTrazladarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmTrazladarProducto" />
+  </wsdl:message>
+  <wsdl:message name="wmTrazladarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmTrazladarProductoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSGestionProductosSoap">
+    <wsdl:operation name="wmListarProductos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtiene la lista de todos los productos.</wsdl:documentation>
+      <wsdl:input message="tns:wmListarProductosSoapIn" />
+      <wsdl:output message="tns:wmListarProductosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wmCrearProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Crea un nuevo producto.</wsdl:documentation>
+      <wsdl:input message="tns:wmCrearProductoSoapIn" />
+      <wsdl:output message="tns:wmCrearProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wmActualizarProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Actualiza un producto existente.</wsdl:documentation>
+      <wsdl:input message="tns:wmActualizarProductoSoapIn" />
+      <wsdl:output message="tns:wmActualizarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wmEliminarProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elimina un producto por su identificador.</wsdl:documentation>
+      <wsdl:input message="tns:wmEliminarProductoSoapIn" />
+      <wsdl:output message="tns:wmEliminarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wmTrazladarProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un trazlado de mercadería</wsdl:documentation>
+      <wsdl:input message="tns:wmTrazladarProductoSoapIn" />
+      <wsdl:output message="tns:wmTrazladarProductoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSGestionProductosSoap" type="tns:WSGestionProductosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wmListarProductos">
+      <soap:operation soapAction="http://tempuri.org/wmListarProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmCrearProducto">
+      <soap:operation soapAction="http://tempuri.org/wmCrearProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmActualizarProducto">
+      <soap:operation soapAction="http://tempuri.org/wmActualizarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmEliminarProducto">
+      <soap:operation soapAction="http://tempuri.org/wmEliminarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmTrazladarProducto">
+      <soap:operation soapAction="http://tempuri.org/wmTrazladarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSGestionProductosSoap12" type="tns:WSGestionProductosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wmListarProductos">
+      <soap12:operation soapAction="http://tempuri.org/wmListarProductos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmCrearProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmCrearProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmActualizarProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmActualizarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmEliminarProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmEliminarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wmTrazladarProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmTrazladarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSGestionProductos">
+    <wsdl:port name="WSGestionProductosSoap" binding="tns:WSGestionProductosSoap">
+      <soap:address location="http://localhost/WSGestionProductos/WSGestionProductos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSGestionProductosSoap12" binding="tns:WSGestionProductosSoap12">
+      <soap12:address location="http://localhost/WSGestionProductos/WSGestionProductos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
