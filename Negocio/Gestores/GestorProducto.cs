@@ -2,6 +2,7 @@
 using Datos.Entidades;
 using Datos.Repositorios;
 using Negocio.Esquemas;
+using Negocio.Transacciones;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -152,6 +153,8 @@ namespace Negocio.Gestores
             ProductoMoverRPT loRespuesta;
             ProductoRepoCD loProdCd = new ProductoRepoCD();
             ProMovTraerRQT loConsulta;
+            DbConexion loConexion = new DbConexion();
+            TransaccionCN loTran = new TransaccionCN(loConexion.ObtenerConexion());
             try
             {
                 loConsulta = new ProMovTraerRQT
@@ -162,12 +165,13 @@ namespace Negocio.Gestores
                 };
 
                 // Validación 1: existe en origen y tiene stock
-                ProMovStockRSP loStock = loProdCd.mxObtenerStockOri(loConsulta); // ← mxObtenerStockOrigen no existe
+                ProMovStockRSP loStock = loProdCd.mxObtenerStockOri(loConsulta, loTran.Conexion, loTran.Transaccion); // ← mxObtenerStockOrigen no existe
                 if (loStock == null)
                 {
                     loRespuesta = new ProductoMoverRPT();
                     loRespuesta.pcCodigo = "404";
                     loRespuesta.pcMensaje = "Producto no encontrado en sede origen.";
+                    loTran.mxRollback();
                     return loRespuesta;
                 }
 
@@ -177,6 +181,7 @@ namespace Negocio.Gestores
                     loRespuesta = new ProductoMoverRPT();
                     loRespuesta.pcCodigo = "400";
                     loRespuesta.pcMensaje = "Stock insuficiente para el traslado.";
+                    loTran.mxRollback();
                     return loRespuesta;
                 }
 
@@ -186,21 +191,21 @@ namespace Negocio.Gestores
                     cNomPro = toProducto.cNomPro,
                     nIdeOri = toProducto.nIdeOri,
                     nCanMov = toProducto.nCanMov
-                });
+                }, loTran.Conexion, loTran.Transaccion);
 
                 // Verificar si existe en destino
-                if (loProdCd.mxExisteEnDestino(loConsulta))
+                if (loProdCd.mxExisteEnDestino(loConsulta, loTran.Conexion, loTran.Transaccion))
                 {
                     loProdCd.mxActualizaStockDestino(new ProMovActDesRQT
                     {
                         cNomPro = toProducto.cNomPro,
                         nIdeDes = toProducto.nIdeDes,
                         nCanMov = toProducto.nCanMov
-                    });
+                    }, loTran.Conexion, loTran.Transaccion);
                 }
                 else
                 {
-                    ProMovNuevoRSP loDatos = loProdCd.mxObtenerNuevoProd(loConsulta); // ← mxObtenerDatosProducto no existe
+                    ProMovNuevoRSP loDatos = loProdCd.mxObtenerNuevoProd(loConsulta, loTran.Conexion, loTran.Transaccion); // ← mxObtenerDatosProducto no existe
                     loProdCd.mxInsertaProductoDestino(new ProMovInsDesRQT
                     {
                         cNomPro = toProducto.cNomPro,
@@ -208,7 +213,7 @@ namespace Negocio.Gestores
                         nPrePro = loDatos.nPrePro,
                         nCanMov = toProducto.nCanMov,
                         nIdeDes = toProducto.nIdeDes
-                    });
+                    }, loTran.Conexion, loTran.Transaccion);
                 }
 
                 loRespuesta = new ProductoMoverRPT();
@@ -218,12 +223,14 @@ namespace Negocio.Gestores
                 loRespuesta.pnIdeOri = toProducto.nIdeOri;
                 loRespuesta.pnIdeDes = toProducto.nIdeDes;
                 loRespuesta.pnCanMov = toProducto.nCanMov;
+                loTran.mxCommit();
             }
             catch (Exception ex)
-            {
+            {                
                 loRespuesta = new ProductoMoverRPT();
                 loRespuesta.pcCodigo = "500";
                 loRespuesta.pcMensaje = ex.Message;
+                loTran.mxRollback();
             }
             return loRespuesta;
         }

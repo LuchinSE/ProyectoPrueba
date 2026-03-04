@@ -61,11 +61,6 @@ namespace WSGestionProductos
         {
             return gestorProducto.mxEliminarRegistro(toProductoEliminar);
         }
-        //[WebMethod(Description = "Realiza un trazlado de mercadería")]
-        //public ProductoMoverRPT wmTrazladarProducto(ProductoMoverRQT toProductoMover)
-        //{
-        //return gestorProducto.mxTrazladarProducto(toProductoMover);
-        //}
         [WebMethod(Description = "Realiza un traslado de mercadería")]
         public ProductoMoverRPT wmTrasladarProducto(ProMovTrasladoRQT toProducto)
         {

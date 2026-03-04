@@ -38,6 +38,8 @@ namespace WSGestionProductos.localhost {
         
         private System.Threading.SendOrPostCallback wmEliminarProductoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback wmTrasladarProductoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -87,6 +89,9 @@ namespace WSGestionProductos.localhost {
         
         /// <remarks/>
         public event wmEliminarProductoCompletedEventHandler wmEliminarProductoCompleted;
+        
+        /// <remarks/>
+        public event wmTrasladarProductoCompletedEventHandler wmTrasladarProductoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmListarProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -199,6 +204,35 @@ namespace WSGestionProductos.localhost {
             if ((this.wmEliminarProductoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.wmEliminarProductoCompleted(this, new wmEliminarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmTrasladarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ProductoMoverRPT wmTrasladarProducto(ProMovTrasladoRQT toProducto) {
+            object[] results = this.Invoke("wmTrasladarProducto", new object[] {
+                        toProducto});
+            return ((ProductoMoverRPT)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void wmTrasladarProductoAsync(ProMovTrasladoRQT toProducto) {
+            this.wmTrasladarProductoAsync(toProducto, null);
+        }
+        
+        /// <remarks/>
+        public void wmTrasladarProductoAsync(ProMovTrasladoRQT toProducto, object userState) {
+            if ((this.wmTrasladarProductoOperationCompleted == null)) {
+                this.wmTrasladarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmTrasladarProductoOperationCompleted);
+            }
+            this.InvokeAsync("wmTrasladarProducto", new object[] {
+                        toProducto}, this.wmTrasladarProductoOperationCompleted, userState);
+        }
+        
+        private void OnwmTrasladarProductoOperationCompleted(object arg) {
+            if ((this.wmTrasladarProductoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.wmTrasladarProductoCompleted(this, new wmTrasladarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -331,6 +365,144 @@ namespace WSGestionProductos.localhost {
             }
             set {
                 this.pnIdeSedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProductoMoverRPT {
+        
+        private string pcCodigoField;
+        
+        private string pcMensajeField;
+        
+        private string pcNomProField;
+        
+        private int pnIdeOriField;
+        
+        private int pnIdeDesField;
+        
+        private int pnCanMovField;
+        
+        /// <remarks/>
+        public string pcCodigo {
+            get {
+                return this.pcCodigoField;
+            }
+            set {
+                this.pcCodigoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcMensaje {
+            get {
+                return this.pcMensajeField;
+            }
+            set {
+                this.pcMensajeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeOri {
+            get {
+                return this.pnIdeOriField;
+            }
+            set {
+                this.pnIdeOriField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeDes {
+            get {
+                return this.pnIdeDesField;
+            }
+            set {
+                this.pnIdeDesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnCanMov {
+            get {
+                return this.pnCanMovField;
+            }
+            set {
+                this.pnCanMovField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProMovTrasladoRQT {
+        
+        private string pcNomProField;
+        
+        private int pnIdeOriField;
+        
+        private int pnIdeDesField;
+        
+        private int pnCanMovField;
+        
+        /// <remarks/>
+        public string pcNomPro {
+            get {
+                return this.pcNomProField;
+            }
+            set {
+                this.pcNomProField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeOri {
+            get {
+                return this.pnIdeOriField;
+            }
+            set {
+                this.pnIdeOriField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnIdeDes {
+            get {
+                return this.pnIdeDesField;
+            }
+            set {
+                this.pnIdeDesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int pnCanMov {
+            get {
+                return this.pnCanMovField;
+            }
+            set {
+                this.pnCanMovField = value;
             }
         }
     }
@@ -850,6 +1022,32 @@ namespace WSGestionProductos.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((ProductoEliminarRPT)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void wmTrasladarProductoCompletedEventHandler(object sender, wmTrasladarProductoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class wmTrasladarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal wmTrasladarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ProductoMoverRPT Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ProductoMoverRPT)(this.results[0]));
             }
         }
     }
