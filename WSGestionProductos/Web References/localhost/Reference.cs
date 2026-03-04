@@ -458,51 +458,51 @@ namespace WSGestionProductos.localhost {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class ProMovTrasladoRQT {
         
-        private string pcNomProField;
+        private string cNomProField;
         
-        private int pnIdeOriField;
+        private int nIdeOriField;
         
-        private int pnIdeDesField;
+        private int nIdeDesField;
         
-        private int pnCanMovField;
+        private int nCanMovField;
         
         /// <remarks/>
-        public string pcNomPro {
+        public string cNomPro {
             get {
-                return this.pcNomProField;
+                return this.cNomProField;
             }
             set {
-                this.pcNomProField = value;
+                this.cNomProField = value;
             }
         }
         
         /// <remarks/>
-        public int pnIdeOri {
+        public int nIdeOri {
             get {
-                return this.pnIdeOriField;
+                return this.nIdeOriField;
             }
             set {
-                this.pnIdeOriField = value;
+                this.nIdeOriField = value;
             }
         }
         
         /// <remarks/>
-        public int pnIdeDes {
+        public int nIdeDes {
             get {
-                return this.pnIdeDesField;
+                return this.nIdeDesField;
             }
             set {
-                this.pnIdeDesField = value;
+                this.nIdeDesField = value;
             }
         }
         
         /// <remarks/>
-        public int pnCanMov {
+        public int nCanMov {
             get {
-                return this.pnCanMovField;
+                return this.nCanMovField;
             }
             set {
-                this.pnCanMovField = value;
+                this.nCanMovField = value;
             }
         }
     }

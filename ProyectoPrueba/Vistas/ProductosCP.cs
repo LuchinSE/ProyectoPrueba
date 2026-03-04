@@ -211,34 +211,16 @@ namespace ProyectoPrueba.Vistas
             this.txnIdeOri.Visible = true;
             this.txnIdeDes.Visible = true;
             this.txnCanMov.Visible = true;
+            this.cmbMovPro.Visible = true;
             this.txcProMov.Enabled = true;
             this.txnIdeOri.Enabled = true;
             this.txnIdeDes.Enabled = true;
             this.txnCanMov.Enabled = true;
-
+            
         }
 
         private void cmbMovPro_Click(object sender, EventArgs e)
         {
-            /*string lcNomPro;
-            int lnIdeOri, lnIdeDes, lnCanMov;
-            WSGestionProductos loRefGestProd = new WSGestionProductos();
-
-            lcNomPro = txcProMov.Text;
-            lnIdeOri = Convert.ToInt32(this.txnIdeOri.Text);
-            lnIdeDes = Convert.ToInt32(this.txnIdeDes.Text);
-            lnCanMov = Convert.ToInt32(this.txnCanMov.Text);
-     
-            ProductoMoverRQT loProductoRpt = new ProductoMoverRQT()
-            { 
-                pcNomPro = lcNomPro,
-                pnIdeOri = lnIdeOri,
-                pnIdeDes = lnIdeDes,
-                pnCanMov = lnCanMov   
-            };
-            loRefGestProd.wmTrazladarProducto(loProductoRpt);
-            Form1_Load(this, EventArgs.Empty);*/
-
             string lcNomPro;
             int lnIdeOri, lnIdeDes, lnCanMov;
             WSGestionProductos loRefGestProd = new WSGestionProductos();

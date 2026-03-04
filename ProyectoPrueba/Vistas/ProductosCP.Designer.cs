@@ -373,6 +373,7 @@
             this.cmbMovPro.TabIndex = 31;
             this.cmbMovPro.Text = "Realizar Trazlado";
             this.cmbMovPro.UseVisualStyleBackColor = true;
+            this.cmbMovPro.Visible = false;
             this.cmbMovPro.Click += new System.EventHandler(this.cmbMovPro_Click);
             // 
             // ProductosCP
