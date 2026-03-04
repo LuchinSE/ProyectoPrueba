@@ -377,51 +377,51 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class ProductoMoverRQT {
         
-        private string cNomProField;
+        private string pcNomProField;
         
-        private int nIdeOriField;
+        private int pnIdeOriField;
         
-        private int nIdeDesField;
+        private int pnIdeDesField;
         
-        private int nCanMovField;
+        private int pnCanMovField;
         
         /// <remarks/>
-        public string cNomPro {
+        public string pcNomPro {
             get {
-                return this.cNomProField;
+                return this.pcNomProField;
             }
             set {
-                this.cNomProField = value;
+                this.pcNomProField = value;
             }
         }
         
         /// <remarks/>
-        public int nIdeOri {
+        public int pnIdeOri {
             get {
-                return this.nIdeOriField;
+                return this.pnIdeOriField;
             }
             set {
-                this.nIdeOriField = value;
+                this.pnIdeOriField = value;
             }
         }
         
         /// <remarks/>
-        public int nIdeDes {
+        public int pnIdeDes {
             get {
-                return this.nIdeDesField;
+                return this.pnIdeDesField;
             }
             set {
-                this.nIdeDesField = value;
+                this.pnIdeDesField = value;
             }
         }
         
         /// <remarks/>
-        public int nCanMov {
+        public int pnCanMov {
             get {
-                return this.nCanMovField;
+                return this.pnCanMovField;
             }
             set {
-                this.nCanMovField = value;
+                this.pnCanMovField = value;
             }
         }
     }
@@ -643,51 +643,51 @@ namespace ReferenciaServicios.WRGestionProductos {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class ProductoMoverRPT : Error {
         
-        private string cNomProField;
+        private string pcNomProField;
         
-        private int nIdeOriField;
+        private int pnIdeOriField;
         
-        private int nIdeDesField;
+        private int pnIdeDesField;
         
-        private int nCanMovField;
+        private int pnCanMovField;
         
         /// <remarks/>
-        public string cNomPro {
+        public string pcNomPro {
             get {
-                return this.cNomProField;
+                return this.pcNomProField;
             }
             set {
-                this.cNomProField = value;
+                this.pcNomProField = value;
             }
         }
         
         /// <remarks/>
-        public int nIdeOri {
+        public int pnIdeOri {
             get {
-                return this.nIdeOriField;
+                return this.pnIdeOriField;
             }
             set {
-                this.nIdeOriField = value;
+                this.pnIdeOriField = value;
             }
         }
         
         /// <remarks/>
-        public int nIdeDes {
+        public int pnIdeDes {
             get {
-                return this.nIdeDesField;
+                return this.pnIdeDesField;
             }
             set {
-                this.nIdeDesField = value;
+                this.pnIdeDesField = value;
             }
         }
         
         /// <remarks/>
-        public int nCanMov {
+        public int pnCanMov {
             get {
-                return this.nCanMovField;
+                return this.pnCanMovField;
             }
             set {
-                this.nCanMovField = value;
+                this.pnCanMovField = value;
             }
         }
     }

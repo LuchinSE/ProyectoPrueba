@@ -41,8 +41,8 @@ namespace ProyectoPrueba.Vistas
             if (!ValidarFormulario())
                 return;
 
-            lcNomPro = txcNombre.Text;
-            lcDesPro = txcDescrip.Text;
+            lcNomPro = this.txcNombre.Text;
+            lcDesPro = this.txcDescrip.Text;
             lnPrePro = Convert.ToDecimal(txnPrecio.Text);
             lnStoPro = Convert.ToInt32(txnStock.Text);
             lnIdeSed = Convert.ToInt32(txnSede.Text);
@@ -76,9 +76,9 @@ namespace ProyectoPrueba.Vistas
             if (!ValidarFormulario())
                 return;
 
-            lnIdePro = Convert.ToInt32(txntId.Text);
-            lcNomPro = txcNombre.Text;
-            lcDesPro = txcDescrip.Text;
+            lnIdePro = Convert.ToInt32(this.txntId.Text);
+            lcNomPro = this.txcNombre.Text;
+            lcDesPro = this.txcDescrip.Text;
             lnPrePro = Convert.ToDecimal(txnPrecio.Text);
             lnStoPro = Convert.ToInt32(txnStock.Text);
             lnIdeSed = Convert.ToInt32(txnSede.Text);
@@ -106,12 +106,12 @@ namespace ProyectoPrueba.Vistas
             {
                 DataGridViewRow fila = grdProd.Rows[e.RowIndex];
 
-                txntId.Text = fila.Cells["txnColIdePro"].Value.ToString();
-                txcNombre.Text = fila.Cells["txcColNomPro"].Value.ToString();
-                txcDescrip.Text = fila.Cells["txcColDesPro"].Value.ToString();
-                txnPrecio.Text = fila.Cells["txnColPrePro"].Value.ToString();
-                txnStock.Text = fila.Cells["txnColStoPro"].Value.ToString();
-                txnSede.Text = fila.Cells["txnColIdeSed"].Value.ToString();
+                this.txntId.Text = fila.Cells["txnColIdePro"].Value.ToString();
+                this.txcNombre.Text = fila.Cells["txcColNomPro"].Value.ToString();
+                this.txcDescrip.Text = fila.Cells["txcColDesPro"].Value.ToString();
+                this.txnPrecio.Text = fila.Cells["txnColPrePro"].Value.ToString();
+                this.txnStock.Text = fila.Cells["txnColStoPro"].Value.ToString();
+                this.txnSede.Text = fila.Cells["txnColIdeSed"].Value.ToString();
             }
         }
 
@@ -155,42 +155,42 @@ namespace ProyectoPrueba.Vistas
             if (string.IsNullOrWhiteSpace(txcNombre.Text))
             {
                 MessageBox.Show("El nombre es obligatorio");
-                txcNombre.Focus();
+                this.txcNombre.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txcDescrip.Text))
             {
                 MessageBox.Show("La descripción es obligatoria");
-                txcDescrip.Focus();
+                this.txcDescrip.Focus();
                 return false;
             }
 
             if (!decimal.TryParse(txnPrecio.Text, out decimal precio))
             {
                 MessageBox.Show("Ingrese un precio válido");
-                txnPrecio.Focus();
+                this.txnPrecio.Focus();
                 return false;
             }
 
             if (precio <= 0)
             {
                 MessageBox.Show("El precio debe ser mayor que 0");
-                txnPrecio.Focus();
+                this.txnPrecio.Focus();
                 return false;
             }
 
             if (!int.TryParse(txnStock.Text, out int stock))
             {
                 MessageBox.Show("Ingrese un stock válido");
-                txnStock.Focus();
+                this.txnStock.Focus();
                 return false;
             }
 
             if (stock < 0)
             {
                 MessageBox.Show("El stock no puede ser negativo");
-                txnStock.Focus();
+                this.txnStock.Focus();
                 return false;
             }
             return true;
@@ -203,18 +203,18 @@ namespace ProyectoPrueba.Vistas
 
         private void mxHabilitarControles() 
         {
-            lblProMov.Visible = true;
-            lblIdeOri.Visible = true;
-            lblIdeDes.Visible = true;
-            lblCanMov.Visible = true;
-            txcProMov.Visible = true;
-            txnIdeOri.Visible = true;
-            txnIdeDes.Visible = true;
-            txnCanMov.Visible = true;
-            txcProMov.Enabled = true;
-            txnIdeOri.Enabled = true;
-            txnIdeDes.Enabled = true;
-            txnCanMov.Enabled = true;
+            this.lblProMov.Visible = true;
+            this.lblIdeOri.Visible = true;
+            this.lblIdeDes.Visible = true;
+            this.lblCanMov.Visible = true;
+            this.txcProMov.Visible = true;
+            this.txnIdeOri.Visible = true;
+            this.txnIdeDes.Visible = true;
+            this.txnCanMov.Visible = true;
+            this.txcProMov.Enabled = true;
+            this.txnIdeOri.Enabled = true;
+            this.txnIdeDes.Enabled = true;
+            this.txnCanMov.Enabled = true;
 
         }
 
@@ -225,19 +225,16 @@ namespace ProyectoPrueba.Vistas
             WSGestionProductos loRefGestProd = new WSGestionProductos();
 
             lcNomPro = txcProMov.Text;
-            lnIdeOri = Convert.ToInt32(txnIdeOri.Text);
-            lnIdeDes = Convert.ToInt32(txnIdeDes.Text);
-            lnCanMov = Convert.ToInt32(txnCanMov.Text);
-            if (!ValidarFormulario())
-                return;
-
-
+            lnIdeOri = Convert.ToInt32(this.txnIdeOri.Text);
+            lnIdeDes = Convert.ToInt32(this.txnIdeDes.Text);
+            lnCanMov = Convert.ToInt32(this.txnCanMov.Text);
+     
             ProductoMoverRQT loProductoRpt = new ProductoMoverRQT()
             { 
-                cNomPro = lcNomPro,
-                nIdeOri = lnIdeOri,
-                nIdeDes = lnIdeDes,
-                nCanMov = lnCanMov   
+                pcNomPro = lcNomPro,
+                pnIdeOri = lnIdeOri,
+                pnIdeDes = lnIdeDes,
+                pnCanMov = lnCanMov   
             };
             loRefGestProd.wmTrazladarProducto(loProductoRpt);
             Form1_Load(this, EventArgs.Empty);

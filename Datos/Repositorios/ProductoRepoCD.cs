@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Datos.Conexion;
 using Datos.Entidades;
-using Microsoft.Win32.SafeHandles;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,47 +18,41 @@ namespace Datos.Repositorios
             this.loConexion = new DbConexion();
         }
 
-        public int mxCrearProducto(ProductoCD toProducto)
+        public int mxCrearProducto(ProductoCD toProducto, IDbConnection toConexion, IDbTransaction toTransaccion)
         {
             DynamicParameters loParametros;
-            using (IDbConnection conn = loConexion.ObtenerConexion())
-            {
-
-                loParametros = new DynamicParameters();
-                loParametros.Add("tcNomPro", toProducto.cNomPro);
-                loParametros.Add("tcDesPro", toProducto.cDesPro);
-                loParametros.Add("tnPrePro", toProducto.nPrePro);
-                loParametros.Add("tnStoPro", toProducto.nStoPro);
-                loParametros.Add("tnIdeSed", toProducto.nIdeSed);
-                return conn.ExecuteScalar<int>(Constantes.SP_PRODUCTO_CREAR, loParametros, commandType: CommandType.StoredProcedure);
-
-            }
+ 
+            loParametros = new DynamicParameters();
+            loParametros.Add("tcNomPro", toProducto.cNomPro);
+            loParametros.Add("tcDesPro", toProducto.cDesPro);
+            loParametros.Add("tnPrePro", toProducto.nPrePro);
+            loParametros.Add("tnStoPro", toProducto.nStoPro);
+            loParametros.Add("tnIdeSed", toProducto.nIdeSed);
+            return toConexion.ExecuteScalar<int>(Constantes.SP_PRODUCTO_CREAR, loParametros, transaction: toTransaccion, commandType: CommandType.StoredProcedure);
+   
         }
 
-        public int mxEliminarProducto(int id)
+        public int mxEliminarProducto(int id, IDbConnection toConexion, IDbTransaction toTransaccion)
         {
             DynamicParameters loParametros;
-            using (IDbConnection conn = loConexion.ObtenerConexion())
-            {
+     
                 loParametros = new DynamicParameters();
                 loParametros.Add("tnIdePro", id);
 
-                return conn.Execute(Constantes.SP_PRODUCTO_ELIMINAR, loParametros, commandType: CommandType.StoredProcedure);
-            }
+                return toConexion.Execute(Constantes.SP_PRODUCTO_ELIMINAR, loParametros, transaction: toTransaccion, commandType: CommandType.StoredProcedure);
+            
         }
-        public List<ProductoCD> mxListarProducto()
+        public List<ProductoCD> mxListarProducto(IDbConnection toConexion, IDbTransaction toTransaccion)
         {
-            using (IDbConnection conn = loConexion.ObtenerConexion())
-            {
-                return conn.Query<ProductoCD>(Constantes.SP_PRODUCTO_LISTAR, commandType: CommandType.StoredProcedure).ToList();
-            }
+    
+                return toConexion.Query<ProductoCD>(Constantes.SP_PRODUCTO_LISTAR, transaction: toTransaccion, commandType: CommandType.StoredProcedure).ToList();
+            
         }
 
-        public int mxActualizarProducto(ProductoCD toProducto)
+        public int mxActualizarProducto(ProductoCD toProducto, IDbConnection toConexion, IDbTransaction toTransaccio)
         {
             DynamicParameters loParametros;
-            using (IDbConnection conn = loConexion.ObtenerConexion())
-            {
+
                 loParametros = new DynamicParameters();
                 loParametros.Add("tnIdePro", toProducto.nIdePro);
                 loParametros.Add("tcNomPro", toProducto.cNomPro);
@@ -67,8 +60,8 @@ namespace Datos.Repositorios
                 loParametros.Add("tnPrePro", toProducto.nPrePro);
                 loParametros.Add("tnStoPro", toProducto.nStoPro);
                 loParametros.Add("tnIdeSed", toProducto.nIdeSed);
-                return conn.Execute(Constantes.SP_PRODUCTAR_EDITAR, loParametros, commandType: CommandType.StoredProcedure);
-            }
+                return toConexion.Execute(Constantes.SP_PRODUCTAR_EDITAR, loParametros, transaction: toTransaccio, commandType: CommandType.StoredProcedure);
+            
         }
 
         public int mxRealizarTrazlado(ProductoMovimientoRQT toProducto)
@@ -77,8 +70,8 @@ namespace Datos.Repositorios
             using (IDbConnection conn = loConexion.ObtenerConexion())
             { 
                 loParametros = new DynamicParameters();
-                loParametros.Add("tnNomPro", toProducto.cNomPro);
-                loParametros.Add("tcIdeSedori", toProducto.nIdeOri);
+                loParametros.Add("tcNomPro", toProducto.cNomPro);
+                loParametros.Add("tnIdeSedOri", toProducto.nIdeOri);
                 loParametros.Add("tnIdeSedDes", toProducto.nIdeDes);
                 loParametros.Add("tnCantMov", toProducto.nCanMov);
                 return conn.Execute(Constantes.SP_PRODUCTO_MOVER, loParametros, commandType: CommandType.StoredProcedure);

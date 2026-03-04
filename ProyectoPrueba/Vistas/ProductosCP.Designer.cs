@@ -69,7 +69,7 @@
             // 
             // cmbEditar
             // 
-            this.cmbEditar.Location = new System.Drawing.Point(614, 91);
+            this.cmbEditar.Location = new System.Drawing.Point(338, 279);
             this.cmbEditar.Name = "cmbEditar";
             this.cmbEditar.Size = new System.Drawing.Size(75, 23);
             this.cmbEditar.TabIndex = 1;
@@ -79,7 +79,7 @@
             // 
             // cmbListar
             // 
-            this.cmbListar.Location = new System.Drawing.Point(614, 121);
+            this.cmbListar.Location = new System.Drawing.Point(338, 309);
             this.cmbListar.Name = "cmbListar";
             this.cmbListar.Size = new System.Drawing.Size(75, 23);
             this.cmbListar.TabIndex = 2;
@@ -89,7 +89,7 @@
             // 
             // cmbElimin
             // 
-            this.cmbElimin.Location = new System.Drawing.Point(614, 150);
+            this.cmbElimin.Location = new System.Drawing.Point(338, 338);
             this.cmbElimin.Name = "cmbElimin";
             this.cmbElimin.Size = new System.Drawing.Size(75, 23);
             this.cmbElimin.TabIndex = 3;
@@ -99,28 +99,28 @@
             // 
             // txcNombre
             // 
-            this.txcNombre.Location = new System.Drawing.Point(305, 68);
+            this.txcNombre.Location = new System.Drawing.Point(89, 283);
             this.txcNombre.Name = "txcNombre";
             this.txcNombre.Size = new System.Drawing.Size(220, 20);
             this.txcNombre.TabIndex = 4;
             // 
             // txcDescrip
             // 
-            this.txcDescrip.Location = new System.Drawing.Point(305, 94);
+            this.txcDescrip.Location = new System.Drawing.Point(89, 309);
             this.txcDescrip.Name = "txcDescrip";
             this.txcDescrip.Size = new System.Drawing.Size(220, 20);
             this.txcDescrip.TabIndex = 5;
             // 
             // txnPrecio
             // 
-            this.txnPrecio.Location = new System.Drawing.Point(305, 120);
+            this.txnPrecio.Location = new System.Drawing.Point(89, 335);
             this.txnPrecio.Name = "txnPrecio";
             this.txnPrecio.Size = new System.Drawing.Size(220, 20);
             this.txnPrecio.TabIndex = 6;
             // 
             // txnStock
             // 
-            this.txnStock.Location = new System.Drawing.Point(305, 144);
+            this.txnStock.Location = new System.Drawing.Point(89, 359);
             this.txnStock.Name = "txnStock";
             this.txnStock.Size = new System.Drawing.Size(220, 20);
             this.txnStock.TabIndex = 7;
@@ -128,14 +128,14 @@
             // txntId
             // 
             this.txntId.Enabled = false;
-            this.txntId.Location = new System.Drawing.Point(305, 42);
+            this.txntId.Location = new System.Drawing.Point(89, 257);
             this.txntId.Name = "txntId";
             this.txntId.Size = new System.Drawing.Size(220, 20);
             this.txntId.TabIndex = 9;
             // 
             // cmbInsert
             // 
-            this.cmbInsert.Location = new System.Drawing.Point(614, 62);
+            this.cmbInsert.Location = new System.Drawing.Point(234, 414);
             this.cmbInsert.Name = "cmbInsert";
             this.cmbInsert.Size = new System.Drawing.Size(75, 23);
             this.cmbInsert.TabIndex = 11;
@@ -154,7 +154,7 @@
             this.txnColStoPro,
             this.txtColFecPro,
             this.txnColIdeSed});
-            this.grdProd.Location = new System.Drawing.Point(23, 208);
+            this.grdProd.Location = new System.Drawing.Point(446, 225);
             this.grdProd.Name = "grdProd";
             this.grdProd.Size = new System.Drawing.Size(745, 230);
             this.grdProd.TabIndex = 12;
@@ -205,7 +205,7 @@
             // lblIdePro
             // 
             this.lblIdePro.AutoSize = true;
-            this.lblIdePro.Location = new System.Drawing.Point(264, 45);
+            this.lblIdePro.Location = new System.Drawing.Point(48, 260);
             this.lblIdePro.Name = "lblIdePro";
             this.lblIdePro.Size = new System.Drawing.Size(16, 13);
             this.lblIdePro.TabIndex = 13;
@@ -214,7 +214,7 @@
             // lblNomPro
             // 
             this.lblNomPro.AutoSize = true;
-            this.lblNomPro.Location = new System.Drawing.Point(244, 74);
+            this.lblNomPro.Location = new System.Drawing.Point(28, 289);
             this.lblNomPro.Name = "lblNomPro";
             this.lblNomPro.Size = new System.Drawing.Size(44, 13);
             this.lblNomPro.TabIndex = 14;
@@ -223,7 +223,7 @@
             // lblDesPro
             // 
             this.lblDesPro.AutoSize = true;
-            this.lblDesPro.Location = new System.Drawing.Point(225, 101);
+            this.lblDesPro.Location = new System.Drawing.Point(9, 316);
             this.lblDesPro.Name = "lblDesPro";
             this.lblDesPro.Size = new System.Drawing.Size(63, 13);
             this.lblDesPro.TabIndex = 15;
@@ -232,7 +232,7 @@
             // lblPrePro
             // 
             this.lblPrePro.AutoSize = true;
-            this.lblPrePro.Location = new System.Drawing.Point(242, 123);
+            this.lblPrePro.Location = new System.Drawing.Point(26, 338);
             this.lblPrePro.Name = "lblPrePro";
             this.lblPrePro.Size = new System.Drawing.Size(37, 13);
             this.lblPrePro.TabIndex = 16;
@@ -241,7 +241,7 @@
             // lblStoPro
             // 
             this.lblStoPro.AutoSize = true;
-            this.lblStoPro.Location = new System.Drawing.Point(242, 147);
+            this.lblStoPro.Location = new System.Drawing.Point(26, 362);
             this.lblStoPro.Name = "lblStoPro";
             this.lblStoPro.Size = new System.Drawing.Size(35, 13);
             this.lblStoPro.TabIndex = 17;
@@ -249,7 +249,7 @@
             // 
             // cmbLimpiar
             // 
-            this.cmbLimpiar.Location = new System.Drawing.Point(695, 62);
+            this.cmbLimpiar.Location = new System.Drawing.Point(338, 367);
             this.cmbLimpiar.Name = "cmbLimpiar";
             this.cmbLimpiar.Size = new System.Drawing.Size(75, 23);
             this.cmbLimpiar.TabIndex = 18;
@@ -260,7 +260,7 @@
             // lblSedPro
             // 
             this.lblSedPro.AutoSize = true;
-            this.lblSedPro.Location = new System.Drawing.Point(242, 173);
+            this.lblSedPro.Location = new System.Drawing.Point(26, 388);
             this.lblSedPro.Name = "lblSedPro";
             this.lblSedPro.Size = new System.Drawing.Size(32, 13);
             this.lblSedPro.TabIndex = 20;
@@ -269,7 +269,7 @@
             // 
             // txnSede
             // 
-            this.txnSede.Location = new System.Drawing.Point(305, 173);
+            this.txnSede.Location = new System.Drawing.Point(89, 388);
             this.txnSede.Name = "txnSede";
             this.txnSede.Size = new System.Drawing.Size(220, 20);
             this.txnSede.TabIndex = 21;
@@ -281,9 +281,9 @@
             // 
             // cmbIniMov
             // 
-            this.cmbIniMov.Location = new System.Drawing.Point(696, 90);
+            this.cmbIniMov.Location = new System.Drawing.Point(446, 173);
             this.cmbIniMov.Name = "cmbIniMov";
-            this.cmbIniMov.Size = new System.Drawing.Size(75, 46);
+            this.cmbIniMov.Size = new System.Drawing.Size(129, 46);
             this.cmbIniMov.TabIndex = 22;
             this.cmbIniMov.Text = "Iniciar Movimiento";
             this.cmbIniMov.UseVisualStyleBackColor = true;

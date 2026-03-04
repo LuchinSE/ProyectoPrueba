@@ -33,15 +33,15 @@ namespace Negocio.Esquemas
     }
     public class ProductoInsertarRQT
     {
-        [Required(ErrorMessage ="El nombre es obligatorio")]
+        //[Required(ErrorMessage ="El nombre es obligatorio")]
         public string pcNomPro { get; set; }
         public string pcDesPro { get; set; }
-        [Required(ErrorMessage = "El precio del producto es obligatorio")]
-        [Range(0.01, 9999.99, ErrorMessage = "El precio debe ser mayor a 0")]
+        //[Required(ErrorMessage = "El precio del producto es obligatorio")]
+        //[Range(0.01, 9999.99, ErrorMessage = "El precio debe ser mayor a 0")]
         public decimal pnPrePro { get; set; }
 
-        [Required(ErrorMessage = "El # de existencias es obligatorio")]
-        [Range(0, 9999, ErrorMessage = "El # de existencias no puede ser negativo")]
+        //[Required(ErrorMessage = "El # de existencias es obligatorio")]
+        //[Range(0, 9999, ErrorMessage = "El # de existencias no puede ser negativo")]
         public int pnStoPro { get; set; }
         public int pnIdeSed { get; set; }
 
@@ -62,15 +62,15 @@ namespace Negocio.Esquemas
     public class ProductoActualizarRQT 
     {
         public int pnIdePro { get; set; }
-        [Required(ErrorMessage = "El nombre es obligatorio")]
+        //[Required(ErrorMessage = "El nombre es obligatorio")]
         public string pcNomPro { get; set; }
         public string pcDesPro { get; set; }
-        [Required(ErrorMessage = "El precio del producto es obligatorio")]
-        [Range(0.01, 9999.99, ErrorMessage ="El precio debe ser mayor a 0")]
+        //[Required(ErrorMessage = "El precio del producto es obligatorio")]
+        //[Range(0.01, 9999.99, ErrorMessage ="El precio debe ser mayor a 0")]
         public decimal pnPrePro { get; set; }
 
-        [Required(ErrorMessage = "El # de existencias es obligatorio")]
-        [Range(0, 9999, ErrorMessage ="El # de existencias no puede ser negativo")]
+        //[Required(ErrorMessage = "El # de existencias es obligatorio")]
+        //[Range(0, 9999, ErrorMessage ="El # de existencias no puede ser negativo")]
         public int pnStoPro { get; set; }
 
         public int pnIdeSed { get; set; }
@@ -109,18 +109,18 @@ namespace Negocio.Esquemas
 
     public class ProductoMoverRQT
     { 
-        public string cNomPro { get; set; }
-        public int nIdeOri { get; set; }
-        public int nIdeDes { get; set; }
-        public int nCanMov { get; set; }
+        public string pcNomPro { get; set; }
+        public int pnIdeOri { get; set; }
+        public int pnIdeDes { get; set; }
+        public int pnCanMov { get; set; }
     }
 
     public class ProductoMoverRPT : Error
     {
-        public string cNomPro { get; set; }
-        public int nIdeOri { get; set; }
-        public int nIdeDes { get; set; }
-        public int nCanMov { get; set; }
+        public string pcNomPro { get; set; }
+        public int pnIdeOri { get; set; }
+        public int pnIdeDes { get; set; }
+        public int pnCanMov { get; set; }
     }
 
 }

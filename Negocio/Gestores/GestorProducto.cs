@@ -1,8 +1,11 @@
-﻿using Datos.Entidades;
+﻿using Datos.Conexion;
+using Datos.Entidades;
 using Datos.Repositorios;
 using Negocio.Esquemas;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
 using Transversal;
 
@@ -20,14 +23,19 @@ namespace Negocio.Gestores
             List<ProductoCN> laLstProductos = new List<ProductoCN>();
             ProductoRepoCD loProductosCD = new ProductoRepoCD();
             List<ProductoCD> loLstProductos;
+            SqlTransaction loTransaccion = null;
+            IDbConnection loConexion = null;
             try
             {
-                loLstProductos = loProductosCD.mxListarProducto();
+                loTransaccion = (SqlTransaction)this.mxIniciarTransaccion();
+                loConexion = loTransaccion.Connection;
+                loLstProductos = loProductosCD.mxListarProducto(loConexion,loTransaccion);
 
                 if (loLstProductos.Count == 0)
                 {
                     loRespuesta.pcCodigo = "400";
                     loRespuesta.pcMensaje = Constantes._M_ERROR_LISTAR;
+                    loTransaccion.Commit();
                     return loRespuesta;
                 }
 
@@ -44,11 +52,23 @@ namespace Negocio.Gestores
                     laLstProductos.Add(loProducto);
                 }
                 loRespuesta.paProductos = laLstProductos.ToArray();
+                loTransaccion.Commit();
             }
             catch (Exception ex)
             {
-                
+                if (loTransaccion !=null)
+                {
+                    try { 
+                        loTransaccion.Rollback();
+                    
+                    }catch (Exception) { 
+                    
+                    }
+                }
+
                 Console.WriteLine($"Error al intentar obtener los registros: {ex.Message}");
+                loRespuesta.pcCodigo = "400";
+                loRespuesta.pcMensaje = Constantes._M_ERROR_LISTAR;
                 throw;
 
             }
@@ -56,56 +76,18 @@ namespace Negocio.Gestores
             return loRespuesta;
         }
 
-        public ProductoInsertarRPT mxInsertarProducto(ProductoInsertarRQT toProducto)
-        {
-
-            ProductoInsertarRPT loRespuesta;
-            ProductoRepoCD loProductosCD = new  ProductoRepoCD();
-            ProductoCD loProductoCD;
-            try
-            {
-                    loProductoCD = new ProductoCD
-                {
-                    cNomPro = toProducto.pcNomPro,
-                    cDesPro = toProducto.pcDesPro,
-                    nPrePro = toProducto.pnPrePro,
-                    nStoPro = toProducto.pnStoPro,
-                    nIdeSed = toProducto.pnIdeSed
-                };                        
-
-
-                int nIdePro = loProductosCD.mxCrearProducto(loProductoCD);
-
-                loRespuesta = new ProductoInsertarRPT
-                {
-                    pnIdePro = nIdePro,
-                    pnPrePro = loProductoCD.nPrePro,
-                    pcNomPro = loProductoCD.cNomPro,
-                    pcDesPro = loProductoCD.cDesPro,
-                    pnStoPro = loProductoCD.nStoPro,
-                    ptFecPro = loProductoCD.tFecPro,
-                    pnIdeSed = loProductoCD.nIdeSed
-                };
-                
-            }
-            catch (Exception ex) {
-
-                System.Diagnostics.Debug.WriteLine("Error al insertar: " + ex.Message);
-                loRespuesta = new ProductoInsertarRPT();
-                loRespuesta.pcCodigo = "400";
-                loRespuesta.pcMensaje = Constantes._M_NO_REGISTRO;
-                return loRespuesta;
-
-            }
-            return loRespuesta;
-        }
         public ProductoActualizarRPT mxActualizarProducto(ProductoActualizarRQT toProducto)
         {
             ProductoActualizarRPT loRespuesta;
             ProductoRepoCD loProductosCD = new ProductoRepoCD();
             ProductoCD loProductoCD;
+            SqlTransaction loTransaccion = null;
+            IDbConnection loConexion = null;
             try {
-                    loProductoCD = new ProductoCD
+
+                loTransaccion = (SqlTransaction)this.mxIniciarTransaccion();
+                loConexion = loTransaccion.Connection;
+                loProductoCD = new ProductoCD
                 {
                     nIdePro = toProducto.pnIdePro,
                     cNomPro = toProducto.pcNomPro,
@@ -115,7 +97,7 @@ namespace Negocio.Gestores
                     nIdeSed = toProducto.pnIdeSed
                 };
 
-                int nIdePro = loProductosCD.mxActualizarProducto(loProductoCD);
+                int nIdePro = loProductosCD.mxActualizarProducto(loProductoCD, loConexion, loTransaccion);
 
                 loRespuesta = new ProductoActualizarRPT
                 {
@@ -126,18 +108,32 @@ namespace Negocio.Gestores
                     pnStoPro = loProductoCD.nStoPro,
                     ptFecPro = loProductoCD.tFecPro,
                     pnIdeSed = loProductoCD.nIdeSed
+
                 };
+                loTransaccion.Commit();
 
             }
 
             catch (Exception ex) {
-                
+
+                if (loTransaccion != null)
+                {
+                    try { loTransaccion.Rollback(); }
+                    catch { }
+                }
+
                 System.Diagnostics.Debug.WriteLine("Error al actualizar: " + ex.Message);
                 loRespuesta = new ProductoActualizarRPT();
                 loRespuesta.pcCodigo = "400";
                 loRespuesta.pcMensaje = Constantes._M_ERROR_ACTUALIZAR;
                 return loRespuesta;
 
+            }
+            finally { 
+                
+                loTransaccion.Dispose();    
+                loConexion.Dispose();
+                
             }
         
         return loRespuesta;
@@ -146,30 +142,33 @@ namespace Negocio.Gestores
 
         public ProductoMoverRPT mxTrazladarProducto(ProductoMoverRQT loProdMov)
         {
-            ProductoMoverRPT loProRpt = new ProductoMoverRPT();
+            ProductoMoverRPT loProRpt;
             ProductoRepoCD loProdCd = new ProductoRepoCD();
             ProductoMovimientoRQT loProductoMov;
             try
             {
                 loProductoMov = new ProductoMovimientoRQT
                 {
-                    cNomPro = loProdMov.cNomPro,
-                    nIdeOri = loProdMov.nIdeOri,
-                    nIdeDes = loProdMov.nIdeDes,
-                    nCanMov = loProdMov.nCanMov,
+                    cNomPro = loProdMov.pcNomPro,
+                    nIdeOri = loProdMov.pnIdeOri,
+                    nIdeDes = loProdMov.pnIdeDes,
+                    nCanMov = loProdMov.pnCanMov,
 
                 };
 
                 int confirmacion = loProdCd.mxRealizarTrazlado(loProductoMov);
 
-                    loProRpt.cNomPro = loProductoMov.cNomPro;
-                    loProRpt.nIdeOri = loProductoMov.nIdeOri;
-                    loProRpt.nIdeDes = loProductoMov.nIdeDes;
-                    loProRpt.nCanMov = loProductoMov.nCanMov;
-                
+                loProRpt = new ProductoMoverRPT();
+                { 
+                loProRpt.pcNomPro = loProductoMov.cNomPro;
+                loProRpt.pnIdeOri = loProductoMov.nIdeOri;
+                loProRpt.pnIdeDes = loProductoMov.nIdeDes;
+                loProRpt.pnCanMov = loProductoMov.nCanMov;
+                }
             }
             catch (Exception ex)
             {
+                loProRpt = new ProductoMoverRPT();
                 loProRpt.pcCodigo = "404";
                 loProRpt.pcMensaje = ex.Message;
 
@@ -182,19 +181,107 @@ namespace Negocio.Gestores
         {
             ProductoRepoCD loProductosCD = new ProductoRepoCD();
             ProductoEliminarRPT loRespuesta;
+            SqlTransaction loTransaccion = null;
+            IDbConnection loConexion = null;
             try
             {
+                loTransaccion = (SqlTransaction)this.mxIniciarTransaccion();
+                loConexion = loTransaccion.Connection;
                 loRespuesta = new ProductoEliminarRPT();
-                loRespuesta.pnIdePro = loProductosCD.mxEliminarProducto(loProductoEliminar.pnIdePro);
+                loRespuesta.pnIdePro = loProductosCD.mxEliminarProducto(loProductoEliminar.pnIdePro, loConexion, loTransaccion);
+                loTransaccion.Commit();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
+                if (loTransaccion != null)
+                {
+                    try
+                    {
+                        loTransaccion.Rollback();
+                    }
+                    catch { }
+                }
 
                 System.Diagnostics.Debug.WriteLine("Error al eliminar: " + ex.Message);
                 loRespuesta = new ProductoEliminarRPT();
                 loRespuesta.pcCodigo = "400";
-                loRespuesta.pcMensaje =Constantes._M_ERROR_ELIMINAR;
+                loRespuesta.pcMensaje = Constantes._M_ERROR_ELIMINAR;
                 return loRespuesta;
             }
+            finally { 
+                
+                loTransaccion.Dispose();
+                loConexion.Dispose();
+            }
+
+            return loRespuesta;
+        }
+
+        public IDbTransaction mxIniciarTransaccion()
+        {
+            DbConexion loConCD = new DbConexion();
+            IDbConnection loConexionBD = null;
+            loConexionBD = loConCD.ObtenerConexion();
+            loConexionBD.Open();
+            return loConexionBD.BeginTransaction(IsolationLevel.RepeatableRead);
+        }
+
+ 
+
+
+        public ProductoInsertarRPT mxInsertarProducto(ProductoInsertarRQT toProducto)
+        {
+            ProductoInsertarRPT loRespuesta = new ProductoInsertarRPT();
+            ProductoRepoCD loProductosCD = new ProductoRepoCD();
+            SqlTransaction loTransaccion = null;
+            IDbConnection loConexion = null;
+    
+       
+                try
+                {
+                    loTransaccion = (SqlTransaction)this.mxIniciarTransaccion();
+                    loConexion = loTransaccion.Connection;
+                
+                    ProductoCD loProductoCD = new ProductoCD
+                    {
+                        cNomPro = toProducto.pcNomPro,
+                        cDesPro = toProducto.pcDesPro,
+                        nPrePro = toProducto.pnPrePro,
+                        nStoPro = toProducto.pnStoPro,
+                        nIdeSed = toProducto.pnIdeSed
+                    };
+
+                    int nIdePro = loProductosCD.mxCrearProducto(loProductoCD, loConexion ,loTransaccion);
+
+                    loRespuesta.pnIdePro = nIdePro;
+                    loRespuesta.pnPrePro = loProductoCD.nPrePro;
+                    loRespuesta.pcNomPro = loProductoCD.cNomPro;
+                    loRespuesta.pcDesPro = loProductoCD.cDesPro;
+                    loRespuesta.pnStoPro = loProductoCD.nStoPro;
+                    loRespuesta.ptFecPro = loProductoCD.tFecPro;
+                    loRespuesta.pnIdeSed = loProductoCD.nIdeSed;
+
+                    loTransaccion.Commit();
+                }
+                catch (Exception ex)
+                {
+                    
+                    if (loTransaccion != null)
+                    {
+                        try { loTransaccion.Rollback(); }
+                        catch { /* la transacción ya fue cerrada por el motor */ }
+                    }
+
+                    System.Diagnostics.Debug.WriteLine("Error al insertar: " + ex.Message);
+                    loRespuesta.pcCodigo = "400";
+                    loRespuesta.pcMensaje = Constantes._M_NO_REGISTRO;
+                }
+                finally
+                {
+                    loTransaccion?.Dispose();
+                    loConexion?.Dispose();
+                }
+            
 
             return loRespuesta;
         }
