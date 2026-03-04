@@ -156,6 +156,7 @@
             this.txnColIdeSed});
             this.grdProd.Location = new System.Drawing.Point(446, 225);
             this.grdProd.Name = "grdProd";
+            this.grdProd.RowHeadersVisible = false;
             this.grdProd.Size = new System.Drawing.Size(745, 230);
             this.grdProd.TabIndex = 12;
             this.grdProd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProd_CellContentClick);

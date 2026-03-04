@@ -6,8 +6,6 @@ using Negocio.Transacciones;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Security.Cryptography.X509Certificates;
 using Transversal;
 
 
@@ -33,7 +31,7 @@ namespace Negocio.Gestores
 
                 if (loLstProductos.Count == 0)
                 {
-                    loRespuesta.pcCodigo = "400";
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
                     loRespuesta.pcMensaje = Constantes._M_ERROR_LISTAR;
                     loTran.mxCommit();
                     return loRespuesta;
@@ -66,8 +64,8 @@ namespace Negocio.Gestores
                     }
                 }
 
-                Console.WriteLine($"Error al intentar obtener los registros: {ex.Message}");
-                loRespuesta.pcCodigo = "400";
+                Console.WriteLine( Constantes._M_ERROR_C_LISTAR + ex.Message);
+                loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
                 loRespuesta.pcMensaje = Constantes._M_ERROR_LISTAR;
                 throw;
 
@@ -121,9 +119,9 @@ namespace Negocio.Gestores
                     catch { }
                 }
 
-                System.Diagnostics.Debug.WriteLine("Error al actualizar: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine(Constantes._M_ERROR_C_ACTUALIZAR + ex.Message);
                 loRespuesta = new ProductoActualizarRPT();
-                loRespuesta.pcCodigo = "400";
+                loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
                 loRespuesta.pcMensaje = Constantes._M_ERROR_ACTUALIZAR;
                 return loRespuesta;
 
@@ -150,22 +148,22 @@ namespace Negocio.Gestores
                 };
 
                 // Validación 1: existe en origen y tiene stock
-                ProMovStockRSP loStock = loProdCd.mxObtenerStockOri(loConsulta, loTran.Conexion, loTran.Transaccion); // ← mxObtenerStockOrigen no existe
+                ProMovStockRSP loStock = loProdCd.mxObtenerStockOri(loConsulta, loTran.Conexion, loTran.Transaccion); 
                 if (loStock == null)
                 {
                     loRespuesta = new ProductoMoverRPT();
-                    loRespuesta.pcCodigo = "404";
-                    loRespuesta.pcMensaje = "Producto no encontrado en sede origen.";
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                    loRespuesta.pcMensaje = Constantes._M_ERROR_PRODUCTO_NULL;
                     loTran.mxRollback();
                     return loRespuesta;
                 }
 
-                // Validación 2: stock suficiente
+                // Validación 2: stock insuficiente
                 if (loStock.nStoPro < toProducto.nCanMov)
                 {
                     loRespuesta = new ProductoMoverRPT();
-                    loRespuesta.pcCodigo = "400";
-                    loRespuesta.pcMensaje = "Stock insuficiente para el traslado.";
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
+                    loRespuesta.pcMensaje = Constantes._M_ERROR_STOCK_INSUFICIENTE;
                     loTran.mxRollback();
                     return loRespuesta;
                 }
@@ -190,7 +188,7 @@ namespace Negocio.Gestores
                 }
                 else
                 {
-                    ProMovNuevoRSP loDatos = loProdCd.mxObtenerNuevoProd(loConsulta, loTran.Conexion, loTran.Transaccion); // ← mxObtenerDatosProducto no existe
+                    ProMovNuevoRSP loDatos = loProdCd.mxObtenerNuevoProd(loConsulta, loTran.Conexion, loTran.Transaccion); 
                     loProdCd.mxInsertaProductoDestino(new ProMovInsDesRQT
                     {
                         cNomPro = toProducto.cNomPro,
@@ -202,8 +200,8 @@ namespace Negocio.Gestores
                 }
 
                 loRespuesta = new ProductoMoverRPT();
-                loRespuesta.pcCodigo = "200";
-                loRespuesta.pcMensaje = "Traslado completado exitosamente.";
+                loRespuesta.pcCodigo = Constantes._M_CODIGO_EXITOSO;
+                loRespuesta.pcMensaje = Constantes._M_TRASLADO_EXITOSO;
                 loRespuesta.pcNomPro = toProducto.cNomPro;
                 loRespuesta.pnIdeOri = toProducto.nIdeOri;
                 loRespuesta.pnIdeDes = toProducto.nIdeDes;
@@ -211,9 +209,10 @@ namespace Negocio.Gestores
                 loTran.mxCommit();
             }
             catch (Exception ex)
-            {                
+            {
+                System.Diagnostics.Debug.WriteLine(Constantes._M_ERROR_C_TRASLADO + ex.Message);
                 loRespuesta = new ProductoMoverRPT();
-                loRespuesta.pcCodigo = "500";
+                loRespuesta.pcCodigo = Constantes._M_CODIGO_ERROR;
                 loRespuesta.pcMensaje = ex.Message;
                 loTran.mxRollback();
             }
@@ -243,9 +242,9 @@ namespace Negocio.Gestores
                     catch { }
                 }
 
-                System.Diagnostics.Debug.WriteLine("Error al eliminar: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine(Constantes._M_ERROR_C_ELIMINAR + ex.Message);
                 loRespuesta = new ProductoEliminarRPT();
-                loRespuesta.pcCodigo = "400";
+                loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
                 loRespuesta.pcMensaje = Constantes._M_ERROR_ELIMINAR;
                 return loRespuesta;
             }
@@ -261,9 +260,6 @@ namespace Negocio.Gestores
             loConexionBD.Open();
             return loConexionBD.BeginTransaction(IsolationLevel.RepeatableRead);
         }
-
- 
-
 
         public ProductoInsertarRPT mxInsertarProducto(ProductoInsertarRQT toProducto)
         {
@@ -301,11 +297,11 @@ namespace Negocio.Gestores
                     if (loTran != null)
                     {
                         try { loTran.mxRollback(); }
-                        catch { /* la transacción ya fue cerrada por el motor */ }
+                        catch { }
                     }
 
-                    System.Diagnostics.Debug.WriteLine("Error al insertar: " + ex.Message);
-                    loRespuesta.pcCodigo = "400";
+                    System.Diagnostics.Debug.WriteLine(Constantes._M_ERROR_C_INSERTAR + ex.Message);
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
                     loRespuesta.pcMensaje = Constantes._M_NO_REGISTRO;
                 }
 

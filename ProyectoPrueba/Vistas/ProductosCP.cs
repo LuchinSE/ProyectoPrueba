@@ -10,7 +10,7 @@ namespace ProyectoPrueba.Vistas
 
         public ProductosCP()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void cmbElimin_Click(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace ProyectoPrueba.Vistas
             loProductoEliminar.pnIdePro = Convert.ToInt32(txntId.Text);
             
             loRefGestProd.wmEliminarProducto(loProductoEliminar);
-            Form1_Load(this, EventArgs.Empty);
+            this.Form1_Load(this, EventArgs.Empty);
 
 
         }
@@ -38,7 +38,7 @@ namespace ProyectoPrueba.Vistas
             int lnStoPro, lnIdeSed;
             decimal lnPrePro;
             string lcNomPro, lcDesPro;
-            if (!ValidarFormulario())
+            if (!this.ValidarFormulario())
                 return;
 
             lcNomPro = this.txcNombre.Text;
@@ -58,13 +58,13 @@ namespace ProyectoPrueba.Vistas
 
             
             loRefGestProd.wmCrearProducto(producto);
-            Form1_Load(this, EventArgs.Empty);
+            this.Form1_Load(this, EventArgs.Empty);
         }
 
         private void cmbListar_Click(object sender, EventArgs e)
         {
 
-            Form1_Load(this, EventArgs.Empty); 
+            this.Form1_Load(this, EventArgs.Empty); 
             MessageBox.Show(Constantes._M_CARGA_REGISTRO);
         }
         private void cmbEditar_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace ProyectoPrueba.Vistas
             int lnIdePro,lnStoPro, lnIdeSed;
             decimal lnPrePro;
             string lcNomPro, lcDesPro;
-            if (!ValidarFormulario())
+            if (!this.ValidarFormulario())
                 return;
 
             lnIdePro = Convert.ToInt32(this.txntId.Text);
@@ -95,13 +95,13 @@ namespace ProyectoPrueba.Vistas
 
             
             loRefGestProd.wmActualizarProducto(producto);
-            Form1_Load(this, EventArgs.Empty);
+            this.Form1_Load(this, EventArgs.Empty);
 
         }
 
         private void grdProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            LimpiarCampos();
+            this.LimpiarCampos();
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = grdProd.Rows[e.RowIndex];
@@ -137,7 +137,7 @@ namespace ProyectoPrueba.Vistas
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            mxCargarDatos();
+            this.mxCargarDatos();
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -147,49 +147,49 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            this.LimpiarCampos();
         }
 
         private bool ValidarFormulario()
         {
             if (string.IsNullOrWhiteSpace(txcNombre.Text))
             {
-                MessageBox.Show("El nombre es obligatorio");
+                MessageBox.Show(Constantes._M_ERROR_CAMPO, "Nombre");
                 this.txcNombre.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txcDescrip.Text))
             {
-                MessageBox.Show("La descripción es obligatoria");
+                MessageBox.Show(Constantes._M_ERROR_CAMPO, "Descripcion");
                 this.txcDescrip.Focus();
                 return false;
             }
 
             if (!decimal.TryParse(txnPrecio.Text, out decimal precio))
             {
-                MessageBox.Show("Ingrese un precio válido");
+                MessageBox.Show(Constantes._M_ERROR_CAMPO, "Precio");
                 this.txnPrecio.Focus();
                 return false;
             }
 
             if (precio <= 0)
             {
-                MessageBox.Show("El precio debe ser mayor que 0");
+                MessageBox.Show(Constantes._M_ERROR_PRECIO);
                 this.txnPrecio.Focus();
                 return false;
             }
 
             if (!int.TryParse(txnStock.Text, out int stock))
             {
-                MessageBox.Show("Ingrese un stock válido");
+                MessageBox.Show(Constantes._M_STOCK_INVALIDO);
                 this.txnStock.Focus();
                 return false;
             }
 
             if (stock < 0)
             {
-                MessageBox.Show("El stock no puede ser negativo");
+                MessageBox.Show(Constantes._M_STOCK_NEGATIVO);
                 this.txnStock.Focus();
                 return false;
             }
@@ -198,7 +198,7 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbIniMov_Click(object sender, EventArgs e)
         {
-            mxHabilitarControles();
+            this.mxHabilitarControles();
         }
 
         private void mxHabilitarControles() 
@@ -243,7 +243,7 @@ namespace ProyectoPrueba.Vistas
             if (loRespuesta.pcCodigo == "200")
             {
                 MessageBox.Show(loRespuesta.pcMensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Form1_Load(this, EventArgs.Empty);
+                this.Form1_Load(this, EventArgs.Empty);
             }
             else
             {

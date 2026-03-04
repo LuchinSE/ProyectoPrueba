@@ -5,6 +5,8 @@
         //CONFIRMACIONES
         public const string _M_REGISTRO_EXITOSO = "El registro se guardó correctamente.";
         public const string _M_CARGA_REGISTRO = "Los registros se obtuvieron correctamente.";
+        public const string _M_TRASLADO_EXITOSO = "Traslado completado exitosamente.";
+
         //ERRORES
         public const string _M_ERROR_ACTUALIZAR = "No se pudieron guardar los cambios realizados.";
         public const string _M_ERROR_ELIMINAR = "No se pudo eliminar el registro con identificador: ";
@@ -14,6 +16,17 @@
         public static string _M_NO_REGISTRO = "No se guardó el registro con nombre: ";
         public const string _M_REGISTRO_NO_ENCONTRADO = "El elemento solicitado no existe.";
         public const string _M_RECURSO_NO_EXISTENTE = "El recurso solicitado se encuentra vacío o no existe.";
+        //ERRORES CRITICOS
+        public const string _M_ERROR_C_LISTAR = "Error al intentar obtener los registros";
+        public const string _M_ERROR_C_ACTUALIZAR = "Error al actualizar";
+        public const string _M_ERROR_C_TRASLADO = "Error al realizar el traslado: ";
+        public const string _M_ERROR_C_ELIMINAR = "Error al eliminar: ";
+        public const string _M_ERROR_C_INSERTAR = "Error al insertar: ";
+        //ERRORES DE VALIDACION EN TRASLADO
+        public const string _M_ERROR_STOCK_INSUFICIENTE = "Stock insuficiente para el traslado.";
+        public const string _M_ERROR_PRODUCTO_NULL = "Producto no encontrado en sede origen. ";
+
+
         //PROCEDIMIENTOS ALMACENADOS
         public const string SP_PRODUCTO_CREAR = "PROC_I_INVMPRO";
         public const string SP_PRODUCTO_LISTAR = "PROC_S_INVMPRO_TraerTodo";
@@ -27,6 +40,18 @@
         public const string SP_U_PRODUCTO_DESTINO = "PROC_U_INVMPROSED_DESTINO";
         public const string SP_S_PRODUCTO_NUEVO = "PROC_S_INVMPROSED_PRO";
         public const string SP_I_PRODUCTO_RESTOCK = "PROC_I_INVMPROSED_DESTINO";
+        //CODIGOS DE ERROR  
+        public const string _M_CODIGO_EXITOSO = "200";
+        public const string _M_CODIGO_SIN_CONTENIDO = "204";
+        public const string _M_CODIGO_ERROR = "500";
+        public const string _M_CODIGO_NO_ENCONTRADO = "404";
+        public const string _M_CODIGO_VALIDACION = "400";
+        public const string _M_CODIGO_CREDADO = "201";
+        //CODIGOS VALIDACION VISTAS
+        public const string _M_ERROR_CAMPO = "El campo {0} es obligatorio";
+        public const string _M_ERROR_PRECIO = "El precio debe ser mayor a 0";
+        public const string _M_STOCK_INVALIDO = "Ingrese un stock válido";
+        public const string _M_STOCK_NEGATIVO = "El stock no puede ser negativo";
         //FORMATOS
         public const string FECHA_ESTANDAR = "dd/MM/yyyy";
         public const string MONEDA_CULTURA = "es-PE";
