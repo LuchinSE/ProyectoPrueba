@@ -72,6 +72,13 @@ namespace Negocio.Gestores
                 throw;
 
             }
+            finally
+            {
+
+                loTransaccion.Dispose();
+                loConexion.Dispose();
+
+            }
 
             return loRespuesta;
         }
@@ -140,41 +147,126 @@ namespace Negocio.Gestores
        
         }
 
-        public ProductoMoverRPT mxTrazladarProducto(ProductoMoverRQT loProdMov)
+        public ProductoMoverRPT mxTrasladarProducto(ProMovTrasladoRQT toProducto)
         {
-            ProductoMoverRPT loProRpt;
+            ProductoMoverRPT loRespuesta;
             ProductoRepoCD loProdCd = new ProductoRepoCD();
-            ProductoMovimientoRQT loProductoMov;
+            ProMovTraerRQT loConsulta;
             try
             {
-                loProductoMov = new ProductoMovimientoRQT
+                loConsulta = new ProMovTraerRQT
                 {
-                    cNomPro = loProdMov.pcNomPro,
-                    nIdeOri = loProdMov.pnIdeOri,
-                    nIdeDes = loProdMov.pnIdeDes,
-                    nCanMov = loProdMov.pnCanMov,
-
+                    cNomPro = toProducto.cNomPro,
+                    nIdeOri = toProducto.nIdeOri,
+                    nIdeDes = toProducto.nIdeDes
                 };
 
-                int confirmacion = loProdCd.mxRealizarTrazlado(loProductoMov);
-
-                loProRpt = new ProductoMoverRPT();
-                { 
-                loProRpt.pcNomPro = loProductoMov.cNomPro;
-                loProRpt.pnIdeOri = loProductoMov.nIdeOri;
-                loProRpt.pnIdeDes = loProductoMov.nIdeDes;
-                loProRpt.pnCanMov = loProductoMov.nCanMov;
+                // Validación 1: existe en origen y tiene stock
+                ProMovStockRSP loStock = loProdCd.mxObtenerStockOri(loConsulta); // ← mxObtenerStockOrigen no existe
+                if (loStock == null)
+                {
+                    loRespuesta = new ProductoMoverRPT();
+                    loRespuesta.pcCodigo = "404";
+                    loRespuesta.pcMensaje = "Producto no encontrado en sede origen.";
+                    return loRespuesta;
                 }
+
+                // Validación 2: stock suficiente
+                if (loStock.nStoPro < toProducto.nCanMov)
+                {
+                    loRespuesta = new ProductoMoverRPT();
+                    loRespuesta.pcCodigo = "400";
+                    loRespuesta.pcMensaje = "Stock insuficiente para el traslado.";
+                    return loRespuesta;
+                }
+
+                // Restar en origen
+                loProdCd.mxActualizaStockOrigen(new ProMovActOriRQT
+                {
+                    cNomPro = toProducto.cNomPro,
+                    nIdeOri = toProducto.nIdeOri,
+                    nCanMov = toProducto.nCanMov
+                });
+
+                // Verificar si existe en destino
+                if (loProdCd.mxExisteEnDestino(loConsulta))
+                {
+                    loProdCd.mxActualizaStockDestino(new ProMovActDesRQT
+                    {
+                        cNomPro = toProducto.cNomPro,
+                        nIdeDes = toProducto.nIdeDes,
+                        nCanMov = toProducto.nCanMov
+                    });
+                }
+                else
+                {
+                    ProMovNuevoRSP loDatos = loProdCd.mxObtenerNuevoProd(loConsulta); // ← mxObtenerDatosProducto no existe
+                    loProdCd.mxInsertaProductoDestino(new ProMovInsDesRQT
+                    {
+                        cNomPro = toProducto.cNomPro,
+                        cDesPro = loDatos.cDesPro,
+                        nPrePro = loDatos.nPrePro,
+                        nCanMov = toProducto.nCanMov,
+                        nIdeDes = toProducto.nIdeDes
+                    });
+                }
+
+                loRespuesta = new ProductoMoverRPT();
+                loRespuesta.pcCodigo = "200";
+                loRespuesta.pcMensaje = "Traslado completado exitosamente.";
+                loRespuesta.pcNomPro = toProducto.cNomPro;
+                loRespuesta.pnIdeOri = toProducto.nIdeOri;
+                loRespuesta.pnIdeDes = toProducto.nIdeDes;
+                loRespuesta.pnCanMov = toProducto.nCanMov;
             }
             catch (Exception ex)
             {
-                loProRpt = new ProductoMoverRPT();
-                loProRpt.pcCodigo = "404";
-                loProRpt.pcMensaje = ex.Message;
-
+                loRespuesta = new ProductoMoverRPT();
+                loRespuesta.pcCodigo = "500";
+                loRespuesta.pcMensaje = ex.Message;
             }
-            return loProRpt;
+            return loRespuesta;
         }
+
+        //public ProductoMoverRPT mxTrazladarProducto(ProMovActOriRQT toProOri, ProMovActDesRQT toProDes)
+        //{
+        //  ProductoMoverRPT loRespuesta;
+
+
+        /*ProductoMoverRPT loProRpt;
+        ProductoRepoCD loProdCd = new ProductoRepoCD();
+        ProductoMovimientoRQT loProductoMov;
+
+        try
+        {
+            loProductoMov = new ProductoMovimientoRQT
+            {
+                cNomPro = loProdMov.pcNomPro,
+                nIdeOri = loProdMov.pnIdeOri,
+                nIdeDes = loProdMov.pnIdeDes,
+                nCanMov = loProdMov.pnCanMov,
+
+            };
+
+            int confirmacion = loProdCd.mxRealizarTrazlado(loProductoMov);
+
+            loProRpt = new ProductoMoverRPT();
+            { 
+            loProRpt.pcNomPro = loProductoMov.cNomPro;
+            loProRpt.pnIdeOri = loProductoMov.nIdeOri;
+            loProRpt.pnIdeDes = loProductoMov.nIdeDes;
+            loProRpt.pnCanMov = loProductoMov.nCanMov;
+            }
+        }
+        catch (Exception ex)
+        {
+            loProRpt = new ProductoMoverRPT();
+            loProRpt.pcCodigo = "404";
+            loProRpt.pcMensaje = ex.Message;
+
+        }*/
+        // return loProRpt;
+        //}
 
 
         public ProductoEliminarRPT mxEliminarRegistro(ProductoEliminarRQT loProductoEliminar)

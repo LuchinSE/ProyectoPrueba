@@ -220,7 +220,7 @@ namespace ProyectoPrueba.Vistas
 
         private void cmbMovPro_Click(object sender, EventArgs e)
         {
-            string lcNomPro;
+            /*string lcNomPro;
             int lnIdeOri, lnIdeDes, lnCanMov;
             WSGestionProductos loRefGestProd = new WSGestionProductos();
 
@@ -237,7 +237,36 @@ namespace ProyectoPrueba.Vistas
                 pnCanMov = lnCanMov   
             };
             loRefGestProd.wmTrazladarProducto(loProductoRpt);
-            Form1_Load(this, EventArgs.Empty);
+            Form1_Load(this, EventArgs.Empty);*/
+
+            string lcNomPro;
+            int lnIdeOri, lnIdeDes, lnCanMov;
+            WSGestionProductos loRefGestProd = new WSGestionProductos();
+
+            lcNomPro = txcProMov.Text;
+            lnIdeOri = Convert.ToInt32(this.txnIdeOri.Text);
+            lnIdeDes = Convert.ToInt32(this.txnIdeDes.Text);
+            lnCanMov = Convert.ToInt32(this.txnCanMov.Text);
+
+            ProMovTrasladoRQT loProductoRqt = new ProMovTrasladoRQT()
+            {
+                cNomPro = lcNomPro,
+                nIdeOri = lnIdeOri,
+                nIdeDes = lnIdeDes,
+                nCanMov = lnCanMov
+            };
+
+            ProductoMoverRPT loRespuesta = loRefGestProd.wmTrasladarProducto(loProductoRqt);
+
+            if (loRespuesta.pcCodigo == "200")
+            {
+                MessageBox.Show(loRespuesta.pcMensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Form1_Load(this, EventArgs.Empty);
+            }
+            else
+            {
+                MessageBox.Show(loRespuesta.pcMensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

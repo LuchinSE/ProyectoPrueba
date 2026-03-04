@@ -38,8 +38,6 @@ namespace WSGestionProductos.localhost {
         
         private System.Threading.SendOrPostCallback wmEliminarProductoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback wmTrazladarProductoOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -89,9 +87,6 @@ namespace WSGestionProductos.localhost {
         
         /// <remarks/>
         public event wmEliminarProductoCompletedEventHandler wmEliminarProductoCompleted;
-        
-        /// <remarks/>
-        public event wmTrazladarProductoCompletedEventHandler wmTrazladarProductoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmListarProductos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -204,35 +199,6 @@ namespace WSGestionProductos.localhost {
             if ((this.wmEliminarProductoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.wmEliminarProductoCompleted(this, new wmEliminarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/wmTrazladarProducto", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ProductoMoverRPT wmTrazladarProducto(ProductoMoverRQT toProductoMover) {
-            object[] results = this.Invoke("wmTrazladarProducto", new object[] {
-                        toProductoMover});
-            return ((ProductoMoverRPT)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void wmTrazladarProductoAsync(ProductoMoverRQT toProductoMover) {
-            this.wmTrazladarProductoAsync(toProductoMover, null);
-        }
-        
-        /// <remarks/>
-        public void wmTrazladarProductoAsync(ProductoMoverRQT toProductoMover, object userState) {
-            if ((this.wmTrazladarProductoOperationCompleted == null)) {
-                this.wmTrazladarProductoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwmTrazladarProductoOperationCompleted);
-            }
-            this.InvokeAsync("wmTrazladarProducto", new object[] {
-                        toProductoMover}, this.wmTrazladarProductoOperationCompleted, userState);
-        }
-        
-        private void OnwmTrazladarProductoOperationCompleted(object arg) {
-            if ((this.wmTrazladarProductoCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.wmTrazladarProductoCompleted(this, new wmTrazladarProductoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -365,63 +331,6 @@ namespace WSGestionProductos.localhost {
             }
             set {
                 this.pnIdeSedField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoMoverRQT {
-        
-        private string pcNomProField;
-        
-        private int pnIdeOriField;
-        
-        private int pnIdeDesField;
-        
-        private int pnCanMovField;
-        
-        /// <remarks/>
-        public string pcNomPro {
-            get {
-                return this.pcNomProField;
-            }
-            set {
-                this.pcNomProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnIdeOri {
-            get {
-                return this.pnIdeOriField;
-            }
-            set {
-                this.pnIdeOriField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnIdeDes {
-            get {
-                return this.pnIdeDesField;
-            }
-            set {
-                this.pnIdeDesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnCanMov {
-            get {
-                return this.pnCanMovField;
-            }
-            set {
-                this.pnCanMovField = value;
             }
         }
     }
@@ -598,7 +507,6 @@ namespace WSGestionProductos.localhost {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoMoverRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoEliminarRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoActualizarRPT))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductoInsertarRPT))]
@@ -631,63 +539,6 @@ namespace WSGestionProductos.localhost {
             }
             set {
                 this.pcMensajeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ProductoMoverRPT : Error {
-        
-        private string pcNomProField;
-        
-        private int pnIdeOriField;
-        
-        private int pnIdeDesField;
-        
-        private int pnCanMovField;
-        
-        /// <remarks/>
-        public string pcNomPro {
-            get {
-                return this.pcNomProField;
-            }
-            set {
-                this.pcNomProField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnIdeOri {
-            get {
-                return this.pnIdeOriField;
-            }
-            set {
-                this.pnIdeOriField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnIdeDes {
-            get {
-                return this.pnIdeDesField;
-            }
-            set {
-                this.pnIdeDesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int pnCanMov {
-            get {
-                return this.pnCanMovField;
-            }
-            set {
-                this.pnCanMovField = value;
             }
         }
     }
@@ -999,32 +850,6 @@ namespace WSGestionProductos.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((ProductoEliminarRPT)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
-    public delegate void wmTrazladarProductoCompletedEventHandler(object sender, wmTrazladarProductoCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class wmTrazladarProductoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal wmTrazladarProductoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public ProductoMoverRPT Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((ProductoMoverRPT)(this.results[0]));
             }
         }
     }

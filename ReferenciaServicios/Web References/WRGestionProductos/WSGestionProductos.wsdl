@@ -148,39 +148,37 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
-      <s:element name="wmTrazladarProducto">
+      <s:element name="wmTrasladarProducto">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="toProductoMover" type="tns:ProductoMoverRQT" />
+            <s:element minOccurs="0" maxOccurs="1" name="toProducto" type="tns:ProMovTrasladoRQT" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ProductoMoverRQT">
+      <s:complexType name="ProMovTrasladoRQT">
         <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cNomPro" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="nIdeOri" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="nIdeDes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="nCanMov" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="wmTrasladarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wmTrasladarProductoResult" type="tns:ProductoMoverRPT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductoMoverRPT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pcCodigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcMensaje" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="pnIdeOri" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="pnIdeDes" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="pnCanMov" type="s:int" />
         </s:sequence>
-      </s:complexType>
-      <s:element name="wmTrazladarProductoResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="wmTrazladarProductoResult" type="tns:ProductoMoverRPT" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ProductoMoverRPT">
-        <s:complexContent mixed="false">
-          <s:extension base="tns:Error">
-            <s:sequence>
-              <s:element minOccurs="0" maxOccurs="1" name="pcNomPro" type="s:string" />
-              <s:element minOccurs="1" maxOccurs="1" name="pnIdeOri" type="s:int" />
-              <s:element minOccurs="1" maxOccurs="1" name="pnIdeDes" type="s:int" />
-              <s:element minOccurs="1" maxOccurs="1" name="pnCanMov" type="s:int" />
-            </s:sequence>
-          </s:extension>
-        </s:complexContent>
       </s:complexType>
     </s:schema>
   </wsdl:types>
@@ -208,11 +206,11 @@
   <wsdl:message name="wmEliminarProductoSoapOut">
     <wsdl:part name="parameters" element="tns:wmEliminarProductoResponse" />
   </wsdl:message>
-  <wsdl:message name="wmTrazladarProductoSoapIn">
-    <wsdl:part name="parameters" element="tns:wmTrazladarProducto" />
+  <wsdl:message name="wmTrasladarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:wmTrasladarProducto" />
   </wsdl:message>
-  <wsdl:message name="wmTrazladarProductoSoapOut">
-    <wsdl:part name="parameters" element="tns:wmTrazladarProductoResponse" />
+  <wsdl:message name="wmTrasladarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:wmTrasladarProductoResponse" />
   </wsdl:message>
   <wsdl:portType name="WSGestionProductosSoap">
     <wsdl:operation name="wmListarProductos">
@@ -235,10 +233,10 @@
       <wsdl:input message="tns:wmEliminarProductoSoapIn" />
       <wsdl:output message="tns:wmEliminarProductoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="wmTrazladarProducto">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un trazlado de mercadería</wsdl:documentation>
-      <wsdl:input message="tns:wmTrazladarProductoSoapIn" />
-      <wsdl:output message="tns:wmTrazladarProductoSoapOut" />
+    <wsdl:operation name="wmTrasladarProducto">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Realiza un traslado de mercadería</wsdl:documentation>
+      <wsdl:input message="tns:wmTrasladarProductoSoapIn" />
+      <wsdl:output message="tns:wmTrasladarProductoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSGestionProductosSoap" type="tns:WSGestionProductosSoap">
@@ -279,8 +277,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="wmTrazladarProducto">
-      <soap:operation soapAction="http://tempuri.org/wmTrazladarProducto" style="document" />
+    <wsdl:operation name="wmTrasladarProducto">
+      <soap:operation soapAction="http://tempuri.org/wmTrasladarProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -327,8 +325,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="wmTrazladarProducto">
-      <soap12:operation soapAction="http://tempuri.org/wmTrazladarProducto" style="document" />
+    <wsdl:operation name="wmTrasladarProducto">
+      <soap12:operation soapAction="http://tempuri.org/wmTrasladarProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -115,8 +115,28 @@ namespace Negocio.Esquemas
         public int pnCanMov { get; set; }
     }
 
-    public class ProductoMoverRPT : Error
+   /* public class ProductoMoverRPT : Error
     {
+        public string pcNomPro { get; set; }
+        public int pnIdeOri { get; set; }
+        public int pnIdeDes { get; set; }
+        public int pnCanMov { get; set; }
+    }*/
+
+    // Único RQT que recibe el método de BLL con todo lo necesario
+    public class ProMovTrasladoRQT
+    {
+        public string cNomPro { get; set; }
+        public int nIdeOri { get; set; }
+        public int nIdeDes { get; set; }
+        public int nCanMov { get; set; }
+    }
+
+    // Respuesta que devuelve BLL a la capa superior
+    public class ProductoMoverRPT
+    {
+        public string pcCodigo { get; set; }
+        public string pcMensaje { get; set; }
         public string pcNomPro { get; set; }
         public int pnIdeOri { get; set; }
         public int pnIdeDes { get; set; }
