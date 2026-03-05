@@ -41,10 +41,9 @@ namespace WSGestionProductos
             if (!valido)
             {
                 HttpContext.Current.Response.StatusCode = 400;
-
                 HttpContext.Current.Response.StatusDescription = errores[0].ErrorMessage;
-                ProductoInsertarRPT r = new ProductoInsertarRPT();
-                return r;
+                ProductoInsertarRPT loRespuesta = new ProductoInsertarRPT();
+                return loRespuesta;
             }
 
             return gestorProducto.mxInsertarProducto(toProductoRequest);

@@ -156,7 +156,7 @@ namespace Negocio.Gestores
                 };
 
                 // Validación 1: existe en origen y tiene stock
-                ProMovStockRSP loStock = loProdCd.mxObtenerStockOri(loConsulta, loTran.Conexion, loTran.Transaccion); 
+                ProMovStockRPT loStock = loProdCd.mxObtenerStockOri(loConsulta, loTran.Conexion, loTran.Transaccion); 
                 if (loStock == null)
                 {
                     loRespuesta = new ProductoMoverRPT();
@@ -165,8 +165,16 @@ namespace Negocio.Gestores
                     loTran.mxRollback();
                     return loRespuesta;
                 }
-
-                // Validación 2: stock insuficiente
+                //Validación 2: las sedes de origen y destino son iguales
+                if (toProducto.nIdeOri == toProducto.nIdeDes)
+                {
+                    loRespuesta = new ProductoMoverRPT();
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
+                    loRespuesta.pcMensaje = Constantes._M_ERROR_SEDES_IGUALES;
+                    loTran.mxRollback();
+                    return loRespuesta;
+                }
+                // Validación 3: stock insuficiente
                 if (loStock.nStoPro < toProducto.nCanMov)
                 {
                     loRespuesta = new ProductoMoverRPT();
@@ -195,8 +203,10 @@ namespace Negocio.Gestores
                     }, loTran.Conexion, loTran.Transaccion);
                 }
                 else
-                {
-                    ProMovNuevoRSP loDatos = loProdCd.mxObtenerNuevoProd(loConsulta, loTran.Conexion, loTran.Transaccion); 
+                {  
+
+
+                    ProMovNuevoRPT loDatos = loProdCd.mxObtenerNuevoProd(loConsulta, loTran.Conexion, loTran.Transaccion); 
                     loProdCd.mxInsertaProductoDestino(new ProMovInsDesRQT
                     {
                         cNomPro = toProducto.cNomPro,

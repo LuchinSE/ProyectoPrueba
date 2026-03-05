@@ -102,13 +102,13 @@ namespace Datos.Entidades
     }
 
     // Respuesta de stock en origen
-    public class ProMovStockRSP
+    public class ProMovStockRPT
     {
         public int nStoPro { get; set; }
     }
 
     // Respuesta de datos del producto
-    public class ProMovNuevoRSP
+    public class ProMovNuevoRPT
     {
         public string cDesPro { get; set; }
         public decimal nPrePro { get; set; }

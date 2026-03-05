@@ -26,6 +26,7 @@
         //ERRORES DE VALIDACION EN TRASLADO
         public const string _M_ERROR_STOCK_INSUFICIENTE = "Stock insuficiente para el traslado.";
         public const string _M_ERROR_PRODUCTO_NULL = "Producto no encontrado en sede origen. ";
+        public const string _M_ERROR_SEDES_IGUALES = "No se puede realizar un trazlado a la misma sede origen";
         //PROCEDIMIENTOS ALMACENADOS
         public const string SP_PRODUCTO_CREAR = "PROC_I_INVMPRO";
         public const string SP_PRODUCTO_LISTAR = "PROC_S_INVMPRO_TraerTodo";
@@ -47,7 +48,7 @@
         public const string _M_CODIGO_VALIDACION = "400";
         public const string _M_CODIGO_CREDADO = "201";
         //CODIGOS VALIDACION VISTAS
-        public const string _M_ERROR_CAMPO = "El campo {0} es obligatorio";
+        public const string _M_ERROR_CAMPO = "Campo obligatorio: ";
         public const string _M_ERROR_PRECIO = "El precio debe ser mayor a 0";
         public const string _M_STOCK_INVALIDO = "Ingrese un stock válido";
         public const string _M_STOCK_NEGATIVO = "El stock no puede ser negativo";

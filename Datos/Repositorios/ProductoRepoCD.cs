@@ -102,24 +102,24 @@ namespace Datos.Repositorios
             
         }
 
-        public ProMovNuevoRSP mxObtenerNuevoProd(ProMovTraerRQT toProducto, IDbConnection toConexion, IDbTransaction toTransaccio)
+        public ProMovNuevoRPT mxObtenerNuevoProd(ProMovTraerRQT toProducto, IDbConnection toConexion, IDbTransaction toTransaccio)
         {
             DynamicParameters loParametros;
            
                 loParametros = new DynamicParameters();
                 loParametros.Add("tcNomPro", toProducto.cNomPro);
-                return toConexion.QueryFirstOrDefault<ProMovNuevoRSP>(Constantes.SP_S_PRODUCTO_NUEVO, loParametros, transaction: toTransaccio, commandType: CommandType.StoredProcedure);
+                return toConexion.QueryFirstOrDefault<ProMovNuevoRPT>(Constantes.SP_S_PRODUCTO_NUEVO, loParametros, transaction: toTransaccio, commandType: CommandType.StoredProcedure);
             
         }
 
-        public ProMovStockRSP mxObtenerStockOri(ProMovTraerRQT toProducto, IDbConnection toConexion, IDbTransaction toTransaccio)
+        public ProMovStockRPT mxObtenerStockOri(ProMovTraerRQT toProducto, IDbConnection toConexion, IDbTransaction toTransaccio)
         {
             DynamicParameters loParametros;
  
                 loParametros = new DynamicParameters();
                 loParametros.Add("tcNomPro", toProducto.cNomPro);
                 loParametros.Add("tnIdeSedOri", toProducto.nIdeOri);
-                return toConexion.QueryFirstOrDefault<ProMovStockRSP>(Constantes.SP_S_STOCK_ORIGEN, loParametros, transaction: toTransaccio, commandType: CommandType.StoredProcedure);
+                return toConexion.QueryFirstOrDefault<ProMovStockRPT>(Constantes.SP_S_STOCK_ORIGEN, loParametros, transaction: toTransaccio, commandType: CommandType.StoredProcedure);
             
         }
 

@@ -154,21 +154,21 @@ namespace ProyectoPrueba.Vistas
         {
             if (string.IsNullOrWhiteSpace(txcNombre.Text))
             {
-                MessageBox.Show(Constantes._M_ERROR_CAMPO, "Nombre");
+                MessageBox.Show(Constantes._M_ERROR_CAMPO + "Nombre");
                 this.txcNombre.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txcDescrip.Text))
             {
-                MessageBox.Show(Constantes._M_ERROR_CAMPO, "Descripcion");
+                MessageBox.Show(Constantes._M_ERROR_CAMPO + "Descripcion");
                 this.txcDescrip.Focus();
                 return false;
             }
 
             if (!decimal.TryParse(txnPrecio.Text, out decimal precio))
             {
-                MessageBox.Show(Constantes._M_ERROR_CAMPO, "Precio");
+                MessageBox.Show(Constantes._M_ERROR_CAMPO + "Precio");
                 this.txnPrecio.Focus();
                 return false;
             }
