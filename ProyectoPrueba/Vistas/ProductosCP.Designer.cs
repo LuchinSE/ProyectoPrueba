@@ -38,13 +38,6 @@
             this.txntId = new System.Windows.Forms.TextBox();
             this.cmbInsert = new System.Windows.Forms.Button();
             this.grdProd = new System.Windows.Forms.DataGridView();
-            this.txnColIdePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txcColNomPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txcColDesPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txnColPrePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txnColStoPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtColFecPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txnColIdeSed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblIdePro = new System.Windows.Forms.Label();
             this.lblNomPro = new System.Windows.Forms.Label();
             this.lblDesPro = new System.Windows.Forms.Label();
@@ -64,12 +57,20 @@
             this.txnIdeDes = new System.Windows.Forms.TextBox();
             this.txnCanMov = new System.Windows.Forms.TextBox();
             this.cmbMovPro = new System.Windows.Forms.Button();
+            this.txnColIdePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txcColNomPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txcColDesPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txnColPrePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txnColStoPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtColFecPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txnColIdeSed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbCancelMov = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdProd)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbEditar
             // 
-            this.cmbEditar.Location = new System.Drawing.Point(338, 279);
+            this.cmbEditar.Location = new System.Drawing.Point(353, 57);
             this.cmbEditar.Name = "cmbEditar";
             this.cmbEditar.Size = new System.Drawing.Size(75, 23);
             this.cmbEditar.TabIndex = 1;
@@ -79,7 +80,7 @@
             // 
             // cmbListar
             // 
-            this.cmbListar.Location = new System.Drawing.Point(338, 309);
+            this.cmbListar.Location = new System.Drawing.Point(353, 86);
             this.cmbListar.Name = "cmbListar";
             this.cmbListar.Size = new System.Drawing.Size(75, 23);
             this.cmbListar.TabIndex = 2;
@@ -89,7 +90,7 @@
             // 
             // cmbElimin
             // 
-            this.cmbElimin.Location = new System.Drawing.Point(338, 338);
+            this.cmbElimin.Location = new System.Drawing.Point(353, 115);
             this.cmbElimin.Name = "cmbElimin";
             this.cmbElimin.Size = new System.Drawing.Size(75, 23);
             this.cmbElimin.TabIndex = 3;
@@ -99,28 +100,28 @@
             // 
             // txcNombre
             // 
-            this.txcNombre.Location = new System.Drawing.Point(89, 283);
+            this.txcNombre.Location = new System.Drawing.Point(104, 65);
             this.txcNombre.Name = "txcNombre";
             this.txcNombre.Size = new System.Drawing.Size(220, 20);
             this.txcNombre.TabIndex = 4;
             // 
             // txcDescrip
             // 
-            this.txcDescrip.Location = new System.Drawing.Point(89, 309);
+            this.txcDescrip.Location = new System.Drawing.Point(104, 91);
             this.txcDescrip.Name = "txcDescrip";
             this.txcDescrip.Size = new System.Drawing.Size(220, 20);
             this.txcDescrip.TabIndex = 5;
             // 
             // txnPrecio
             // 
-            this.txnPrecio.Location = new System.Drawing.Point(89, 335);
+            this.txnPrecio.Location = new System.Drawing.Point(104, 117);
             this.txnPrecio.Name = "txnPrecio";
             this.txnPrecio.Size = new System.Drawing.Size(220, 20);
             this.txnPrecio.TabIndex = 6;
             // 
             // txnStock
             // 
-            this.txnStock.Location = new System.Drawing.Point(89, 359);
+            this.txnStock.Location = new System.Drawing.Point(104, 141);
             this.txnStock.Name = "txnStock";
             this.txnStock.Size = new System.Drawing.Size(220, 20);
             this.txnStock.TabIndex = 7;
@@ -128,14 +129,14 @@
             // txntId
             // 
             this.txntId.Enabled = false;
-            this.txntId.Location = new System.Drawing.Point(89, 257);
+            this.txntId.Location = new System.Drawing.Point(104, 39);
             this.txntId.Name = "txntId";
             this.txntId.Size = new System.Drawing.Size(220, 20);
             this.txntId.TabIndex = 9;
             // 
             // cmbInsert
             // 
-            this.cmbInsert.Location = new System.Drawing.Point(234, 414);
+            this.cmbInsert.Location = new System.Drawing.Point(249, 196);
             this.cmbInsert.Name = "cmbInsert";
             this.cmbInsert.Size = new System.Drawing.Size(75, 23);
             this.cmbInsert.TabIndex = 11;
@@ -145,6 +146,8 @@
             // 
             // grdProd
             // 
+            this.grdProd.AllowUserToResizeColumns = false;
+            this.grdProd.AllowUserToResizeRows = false;
             this.grdProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdProd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.txnColIdePro,
@@ -154,12 +157,188 @@
             this.txnColStoPro,
             this.txtColFecPro,
             this.txnColIdeSed});
-            this.grdProd.Location = new System.Drawing.Point(446, 225);
+            this.grdProd.Location = new System.Drawing.Point(481, 42);
+            this.grdProd.MultiSelect = false;
             this.grdProd.Name = "grdProd";
+            this.grdProd.ReadOnly = true;
             this.grdProd.RowHeadersVisible = false;
-            this.grdProd.Size = new System.Drawing.Size(745, 230);
+            this.grdProd.Size = new System.Drawing.Size(702, 397);
             this.grdProd.TabIndex = 12;
             this.grdProd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProd_CellContentClick);
+            // 
+            // lblIdePro
+            // 
+            this.lblIdePro.AutoSize = true;
+            this.lblIdePro.Location = new System.Drawing.Point(63, 42);
+            this.lblIdePro.Name = "lblIdePro";
+            this.lblIdePro.Size = new System.Drawing.Size(16, 13);
+            this.lblIdePro.TabIndex = 13;
+            this.lblIdePro.Text = "Id";
+            // 
+            // lblNomPro
+            // 
+            this.lblNomPro.AutoSize = true;
+            this.lblNomPro.Location = new System.Drawing.Point(43, 71);
+            this.lblNomPro.Name = "lblNomPro";
+            this.lblNomPro.Size = new System.Drawing.Size(44, 13);
+            this.lblNomPro.TabIndex = 14;
+            this.lblNomPro.Text = "Nombre";
+            // 
+            // lblDesPro
+            // 
+            this.lblDesPro.AutoSize = true;
+            this.lblDesPro.Location = new System.Drawing.Point(24, 98);
+            this.lblDesPro.Name = "lblDesPro";
+            this.lblDesPro.Size = new System.Drawing.Size(63, 13);
+            this.lblDesPro.TabIndex = 15;
+            this.lblDesPro.Text = "Descripcion";
+            // 
+            // lblPrePro
+            // 
+            this.lblPrePro.AutoSize = true;
+            this.lblPrePro.Location = new System.Drawing.Point(41, 120);
+            this.lblPrePro.Name = "lblPrePro";
+            this.lblPrePro.Size = new System.Drawing.Size(37, 13);
+            this.lblPrePro.TabIndex = 16;
+            this.lblPrePro.Text = "Precio";
+            // 
+            // lblStoPro
+            // 
+            this.lblStoPro.AutoSize = true;
+            this.lblStoPro.Location = new System.Drawing.Point(41, 144);
+            this.lblStoPro.Name = "lblStoPro";
+            this.lblStoPro.Size = new System.Drawing.Size(35, 13);
+            this.lblStoPro.TabIndex = 17;
+            this.lblStoPro.Text = "Stock";
+            // 
+            // cmbLimpiar
+            // 
+            this.cmbLimpiar.Location = new System.Drawing.Point(353, 144);
+            this.cmbLimpiar.Name = "cmbLimpiar";
+            this.cmbLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.cmbLimpiar.TabIndex = 18;
+            this.cmbLimpiar.Text = "Limpiar";
+            this.cmbLimpiar.UseVisualStyleBackColor = true;
+            this.cmbLimpiar.Click += new System.EventHandler(this.cmbLimpiar_Click);
+            // 
+            // lblSedPro
+            // 
+            this.lblSedPro.AutoSize = true;
+            this.lblSedPro.Location = new System.Drawing.Point(41, 170);
+            this.lblSedPro.Name = "lblSedPro";
+            this.lblSedPro.Size = new System.Drawing.Size(32, 13);
+            this.lblSedPro.TabIndex = 20;
+            this.lblSedPro.Text = "Sede";
+            this.lblSedPro.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // txnSede
+            // 
+            this.txnSede.Location = new System.Drawing.Point(104, 170);
+            this.txnSede.Name = "txnSede";
+            this.txnSede.Size = new System.Drawing.Size(220, 20);
+            this.txnSede.TabIndex = 21;
+            // 
+            // sqlCommand1
+            // 
+            this.sqlCommand1.CommandTimeout = 30;
+            this.sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // cmbIniMov
+            // 
+            this.cmbIniMov.Location = new System.Drawing.Point(104, 223);
+            this.cmbIniMov.Name = "cmbIniMov";
+            this.cmbIniMov.Size = new System.Drawing.Size(129, 46);
+            this.cmbIniMov.TabIndex = 22;
+            this.cmbIniMov.Text = "Iniciar Movimiento";
+            this.cmbIniMov.UseVisualStyleBackColor = true;
+            this.cmbIniMov.Click += new System.EventHandler(this.cmbIniMov_Click);
+            // 
+            // lblProMov
+            // 
+            this.lblProMov.AutoSize = true;
+            this.lblProMov.Location = new System.Drawing.Point(14, 301);
+            this.lblProMov.Name = "lblProMov";
+            this.lblProMov.Size = new System.Drawing.Size(95, 13);
+            this.lblProMov.TabIndex = 23;
+            this.lblProMov.Text = "Nombre producto: ";
+            this.lblProMov.Visible = false;
+            // 
+            // lblIdeOri
+            // 
+            this.lblIdeOri.AutoSize = true;
+            this.lblIdeOri.Location = new System.Drawing.Point(195, 324);
+            this.lblIdeOri.Name = "lblIdeOri";
+            this.lblIdeOri.Size = new System.Drawing.Size(86, 13);
+            this.lblIdeOri.TabIndex = 24;
+            this.lblIdeOri.Text = "ID Sede Origen: ";
+            this.lblIdeOri.Visible = false;
+            // 
+            // lblIdeDes
+            // 
+            this.lblIdeDes.AutoSize = true;
+            this.lblIdeDes.Location = new System.Drawing.Point(190, 353);
+            this.lblIdeDes.Name = "lblIdeDes";
+            this.lblIdeDes.Size = new System.Drawing.Size(88, 13);
+            this.lblIdeDes.TabIndex = 25;
+            this.lblIdeDes.Text = "ID Sede Destino:";
+            this.lblIdeDes.Visible = false;
+            // 
+            // lblCanMov
+            // 
+            this.lblCanMov.AutoSize = true;
+            this.lblCanMov.Location = new System.Drawing.Point(226, 379);
+            this.lblCanMov.Name = "lblCanMov";
+            this.lblCanMov.Size = new System.Drawing.Size(52, 13);
+            this.lblCanMov.TabIndex = 26;
+            this.lblCanMov.Text = "Cantidad:";
+            this.lblCanMov.Visible = false;
+            // 
+            // txcProMov
+            // 
+            this.txcProMov.Enabled = false;
+            this.txcProMov.Location = new System.Drawing.Point(104, 298);
+            this.txcProMov.Name = "txcProMov";
+            this.txcProMov.Size = new System.Drawing.Size(220, 20);
+            this.txcProMov.TabIndex = 27;
+            this.txcProMov.Visible = false;
+            // 
+            // txnIdeOri
+            // 
+            this.txnIdeOri.Enabled = false;
+            this.txnIdeOri.Location = new System.Drawing.Point(284, 324);
+            this.txnIdeOri.Name = "txnIdeOri";
+            this.txnIdeOri.Size = new System.Drawing.Size(40, 20);
+            this.txnIdeOri.TabIndex = 28;
+            this.txnIdeOri.Visible = false;
+            // 
+            // txnIdeDes
+            // 
+            this.txnIdeDes.Enabled = false;
+            this.txnIdeDes.Location = new System.Drawing.Point(284, 350);
+            this.txnIdeDes.Name = "txnIdeDes";
+            this.txnIdeDes.Size = new System.Drawing.Size(40, 20);
+            this.txnIdeDes.TabIndex = 29;
+            this.txnIdeDes.Visible = false;
+            // 
+            // txnCanMov
+            // 
+            this.txnCanMov.Enabled = false;
+            this.txnCanMov.Location = new System.Drawing.Point(284, 376);
+            this.txnCanMov.Name = "txnCanMov";
+            this.txnCanMov.Size = new System.Drawing.Size(40, 20);
+            this.txnCanMov.TabIndex = 30;
+            this.txnCanMov.Visible = false;
+            // 
+            // cmbMovPro
+            // 
+            this.cmbMovPro.Location = new System.Drawing.Point(215, 402);
+            this.cmbMovPro.Name = "cmbMovPro";
+            this.cmbMovPro.Size = new System.Drawing.Size(109, 37);
+            this.cmbMovPro.TabIndex = 31;
+            this.cmbMovPro.Text = "Realizar Trazlado";
+            this.cmbMovPro.UseVisualStyleBackColor = true;
+            this.cmbMovPro.Visible = false;
+            this.cmbMovPro.Click += new System.EventHandler(this.cmbMovPro_Click);
             // 
             // txnColIdePro
             // 
@@ -194,7 +373,7 @@
             // txtColFecPro
             // 
             this.txtColFecPro.DataPropertyName = "ptFecPro";
-            this.txtColFecPro.HeaderText = "FECHA_CREACION";
+            this.txtColFecPro.HeaderText = "FECHA";
             this.txtColFecPro.Name = "txtColFecPro";
             // 
             // txnColIdeSed
@@ -203,185 +382,22 @@
             this.txnColIdeSed.HeaderText = "ID_SEDE";
             this.txnColIdeSed.Name = "txnColIdeSed";
             // 
-            // lblIdePro
+            // cmbCancelMov
             // 
-            this.lblIdePro.AutoSize = true;
-            this.lblIdePro.Location = new System.Drawing.Point(48, 260);
-            this.lblIdePro.Name = "lblIdePro";
-            this.lblIdePro.Size = new System.Drawing.Size(16, 13);
-            this.lblIdePro.TabIndex = 13;
-            this.lblIdePro.Text = "Id";
-            // 
-            // lblNomPro
-            // 
-            this.lblNomPro.AutoSize = true;
-            this.lblNomPro.Location = new System.Drawing.Point(28, 289);
-            this.lblNomPro.Name = "lblNomPro";
-            this.lblNomPro.Size = new System.Drawing.Size(44, 13);
-            this.lblNomPro.TabIndex = 14;
-            this.lblNomPro.Text = "Nombre";
-            // 
-            // lblDesPro
-            // 
-            this.lblDesPro.AutoSize = true;
-            this.lblDesPro.Location = new System.Drawing.Point(9, 316);
-            this.lblDesPro.Name = "lblDesPro";
-            this.lblDesPro.Size = new System.Drawing.Size(63, 13);
-            this.lblDesPro.TabIndex = 15;
-            this.lblDesPro.Text = "Descripcion";
-            // 
-            // lblPrePro
-            // 
-            this.lblPrePro.AutoSize = true;
-            this.lblPrePro.Location = new System.Drawing.Point(26, 338);
-            this.lblPrePro.Name = "lblPrePro";
-            this.lblPrePro.Size = new System.Drawing.Size(37, 13);
-            this.lblPrePro.TabIndex = 16;
-            this.lblPrePro.Text = "Precio";
-            // 
-            // lblStoPro
-            // 
-            this.lblStoPro.AutoSize = true;
-            this.lblStoPro.Location = new System.Drawing.Point(26, 362);
-            this.lblStoPro.Name = "lblStoPro";
-            this.lblStoPro.Size = new System.Drawing.Size(35, 13);
-            this.lblStoPro.TabIndex = 17;
-            this.lblStoPro.Text = "Stock";
-            // 
-            // cmbLimpiar
-            // 
-            this.cmbLimpiar.Location = new System.Drawing.Point(338, 367);
-            this.cmbLimpiar.Name = "cmbLimpiar";
-            this.cmbLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.cmbLimpiar.TabIndex = 18;
-            this.cmbLimpiar.Text = "Limpiar";
-            this.cmbLimpiar.UseVisualStyleBackColor = true;
-            this.cmbLimpiar.Click += new System.EventHandler(this.cmbLimpiar_Click);
-            // 
-            // lblSedPro
-            // 
-            this.lblSedPro.AutoSize = true;
-            this.lblSedPro.Location = new System.Drawing.Point(26, 388);
-            this.lblSedPro.Name = "lblSedPro";
-            this.lblSedPro.Size = new System.Drawing.Size(32, 13);
-            this.lblSedPro.TabIndex = 20;
-            this.lblSedPro.Text = "Sede";
-            this.lblSedPro.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // txnSede
-            // 
-            this.txnSede.Location = new System.Drawing.Point(89, 388);
-            this.txnSede.Name = "txnSede";
-            this.txnSede.Size = new System.Drawing.Size(220, 20);
-            this.txnSede.TabIndex = 21;
-            // 
-            // sqlCommand1
-            // 
-            this.sqlCommand1.CommandTimeout = 30;
-            this.sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // cmbIniMov
-            // 
-            this.cmbIniMov.Location = new System.Drawing.Point(446, 173);
-            this.cmbIniMov.Name = "cmbIniMov";
-            this.cmbIniMov.Size = new System.Drawing.Size(129, 46);
-            this.cmbIniMov.TabIndex = 22;
-            this.cmbIniMov.Text = "Iniciar Movimiento";
-            this.cmbIniMov.UseVisualStyleBackColor = true;
-            this.cmbIniMov.Click += new System.EventHandler(this.cmbIniMov_Click);
-            // 
-            // lblProMov
-            // 
-            this.lblProMov.AutoSize = true;
-            this.lblProMov.Location = new System.Drawing.Point(859, 49);
-            this.lblProMov.Name = "lblProMov";
-            this.lblProMov.Size = new System.Drawing.Size(95, 13);
-            this.lblProMov.TabIndex = 23;
-            this.lblProMov.Text = "Nombre producto: ";
-            this.lblProMov.Visible = false;
-            // 
-            // lblIdeOri
-            // 
-            this.lblIdeOri.AutoSize = true;
-            this.lblIdeOri.Location = new System.Drawing.Point(859, 75);
-            this.lblIdeOri.Name = "lblIdeOri";
-            this.lblIdeOri.Size = new System.Drawing.Size(86, 13);
-            this.lblIdeOri.TabIndex = 24;
-            this.lblIdeOri.Text = "ID Sede Origen: ";
-            this.lblIdeOri.Visible = false;
-            // 
-            // lblIdeDes
-            // 
-            this.lblIdeDes.AutoSize = true;
-            this.lblIdeDes.Location = new System.Drawing.Point(859, 101);
-            this.lblIdeDes.Name = "lblIdeDes";
-            this.lblIdeDes.Size = new System.Drawing.Size(88, 13);
-            this.lblIdeDes.TabIndex = 25;
-            this.lblIdeDes.Text = "ID Sede Destino:";
-            this.lblIdeDes.Visible = false;
-            // 
-            // lblCanMov
-            // 
-            this.lblCanMov.AutoSize = true;
-            this.lblCanMov.Location = new System.Drawing.Point(893, 123);
-            this.lblCanMov.Name = "lblCanMov";
-            this.lblCanMov.Size = new System.Drawing.Size(52, 13);
-            this.lblCanMov.TabIndex = 26;
-            this.lblCanMov.Text = "Cantidad:";
-            this.lblCanMov.Visible = false;
-            // 
-            // txcProMov
-            // 
-            this.txcProMov.Enabled = false;
-            this.txcProMov.Location = new System.Drawing.Point(949, 46);
-            this.txcProMov.Name = "txcProMov";
-            this.txcProMov.Size = new System.Drawing.Size(220, 20);
-            this.txcProMov.TabIndex = 27;
-            this.txcProMov.Visible = false;
-            // 
-            // txnIdeOri
-            // 
-            this.txnIdeOri.Enabled = false;
-            this.txnIdeOri.Location = new System.Drawing.Point(949, 72);
-            this.txnIdeOri.Name = "txnIdeOri";
-            this.txnIdeOri.Size = new System.Drawing.Size(220, 20);
-            this.txnIdeOri.TabIndex = 28;
-            this.txnIdeOri.Visible = false;
-            // 
-            // txnIdeDes
-            // 
-            this.txnIdeDes.Enabled = false;
-            this.txnIdeDes.Location = new System.Drawing.Point(949, 98);
-            this.txnIdeDes.Name = "txnIdeDes";
-            this.txnIdeDes.Size = new System.Drawing.Size(220, 20);
-            this.txnIdeDes.TabIndex = 29;
-            this.txnIdeDes.Visible = false;
-            // 
-            // txnCanMov
-            // 
-            this.txnCanMov.Enabled = false;
-            this.txnCanMov.Location = new System.Drawing.Point(949, 124);
-            this.txnCanMov.Name = "txnCanMov";
-            this.txnCanMov.Size = new System.Drawing.Size(220, 20);
-            this.txnCanMov.TabIndex = 30;
-            this.txnCanMov.Visible = false;
-            // 
-            // cmbMovPro
-            // 
-            this.cmbMovPro.Location = new System.Drawing.Point(1060, 150);
-            this.cmbMovPro.Name = "cmbMovPro";
-            this.cmbMovPro.Size = new System.Drawing.Size(109, 37);
-            this.cmbMovPro.TabIndex = 31;
-            this.cmbMovPro.Text = "Realizar Trazlado";
-            this.cmbMovPro.UseVisualStyleBackColor = true;
-            this.cmbMovPro.Visible = false;
-            this.cmbMovPro.Click += new System.EventHandler(this.cmbMovPro_Click);
+            this.cmbCancelMov.Location = new System.Drawing.Point(249, 223);
+            this.cmbCancelMov.Name = "cmbCancelMov";
+            this.cmbCancelMov.Size = new System.Drawing.Size(75, 46);
+            this.cmbCancelMov.TabIndex = 32;
+            this.cmbCancelMov.Text = "Cancelar Movimiento";
+            this.cmbCancelMov.UseVisualStyleBackColor = true;
+            this.cmbCancelMov.Click += new System.EventHandler(this.cmbCancelMov_Click);
             // 
             // ProductosCP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 600);
+            this.ClientSize = new System.Drawing.Size(1206, 468);
+            this.Controls.Add(this.cmbCancelMov);
             this.Controls.Add(this.cmbMovPro);
             this.Controls.Add(this.txnCanMov);
             this.Controls.Add(this.txnIdeDes);
@@ -441,13 +457,6 @@
         private System.Windows.Forms.Button cmbLimpiar;
         private System.Windows.Forms.Label lblSedPro;
         private System.Windows.Forms.TextBox txnSede;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txnColIdePro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txcColNomPro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txcColDesPro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txnColPrePro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txnColStoPro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txtColFecPro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txnColIdeSed;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private System.Windows.Forms.Button cmbIniMov;
         private System.Windows.Forms.Label lblProMov;
@@ -459,5 +468,13 @@
         private System.Windows.Forms.TextBox txnIdeDes;
         private System.Windows.Forms.TextBox txnCanMov;
         private System.Windows.Forms.Button cmbMovPro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txnColIdePro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txcColNomPro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txcColDesPro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txnColPrePro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txnColStoPro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtColFecPro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txnColIdeSed;
+        private System.Windows.Forms.Button cmbCancelMov;
     }
 }

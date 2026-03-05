@@ -251,5 +251,23 @@ namespace ProyectoPrueba.Vistas
             }
 
         }
+
+        private void cmbCancelMov_Click(object sender, EventArgs e)
+        {
+            this.lblProMov.Visible = false;
+            this.lblIdeOri.Visible = false;
+            this.lblIdeDes.Visible = false;
+            this.lblCanMov.Visible = false;
+            this.txcProMov.Visible = false;
+            this.txnIdeOri.Visible = false;
+            this.txnIdeDes.Visible = false;
+            this.txnCanMov.Visible = false;
+            this.cmbMovPro.Visible = false;
+            this.txcProMov.Enabled = false;
+            this.txnIdeOri.Enabled = false;
+            this.txnIdeDes.Enabled = false;
+            this.txnCanMov.Enabled = false;
+
+        }
     }
 }
