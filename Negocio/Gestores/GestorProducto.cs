@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Data;
 using Transversal;
 
-
 namespace Negocio.Gestores
 {
     public class GestorProducto
@@ -82,8 +81,8 @@ namespace Negocio.Gestores
             DbConexion loConexion = new DbConexion();
             TransaccionCN loTran = new TransaccionCN(loConexion.ObtenerConexion());
             try {
-
                 
+           
                 loProductoCD = new ProductoCD
                 {
                     nIdePro = toProducto.pnIdePro,
@@ -95,6 +94,15 @@ namespace Negocio.Gestores
                 };
 
                 int nIdePro = loProductosCD.mxActualizarProducto(loProductoCD, loTran.Conexion, loTran.Transaccion);
+
+                if (nIdePro <=0)
+                {
+                    loTran.mxRollback();
+                    loRespuesta = new ProductoActualizarRPT();
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_NO_ENCONTRADO;
+                    loRespuesta.pcMensaje = Constantes._M_ERROR_PROD_INEXISTENTE;
+                    return loRespuesta;
+                }
 
                 loRespuesta = new ProductoActualizarRPT
                 {
@@ -226,9 +234,17 @@ namespace Negocio.Gestores
             TransaccionCN loTran = new TransaccionCN(loConexion.ObtenerConexion());
             try
             {
-                
+             
                 loRespuesta = new ProductoEliminarRPT();
                 loRespuesta.pnIdePro = loProductosCD.mxEliminarProducto(loProductoEliminar.pnIdePro, loTran.Conexion, loTran.Transaccion);
+                if(loRespuesta.pnIdePro<=0)
+                {
+                    loTran.mxRollback();
+                    loRespuesta.pcCodigo = Constantes._M_CODIGO_ERROR;
+                    loRespuesta.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
+                    return loRespuesta;
+                }
+
                 loTran.mxCommit();
             }
             catch (Exception ex)
@@ -281,6 +297,14 @@ namespace Negocio.Gestores
 
                     int nIdePro = loProductosCD.mxCrearProducto(loProductoCD, loTran.Conexion ,loTran.Transaccion);
 
+                    if (nIdePro <=0)
+                    {
+                        loTran.mxRollback();
+                        loRespuesta.pcCodigo = Constantes._M_CODIGO_ERROR;
+                        loRespuesta.pcMensaje = Constantes._M_ERROR_BASE_DATOS;
+                        return loRespuesta;
+                    }
+
                     loRespuesta.pnIdePro = nIdePro;
                     loRespuesta.pnPrePro = loProductoCD.nPrePro;
                     loRespuesta.pcNomPro = loProductoCD.cNomPro;
@@ -293,13 +317,12 @@ namespace Negocio.Gestores
                 }
                 catch (Exception ex)
                 {
-                    
-                    if (loTran != null)
-                    {
-                        try { loTran.mxRollback(); }
-                        catch { }
-                    }
 
+                if (loTran != null)
+                {
+                    try { loTran.mxRollback(); }
+                    catch { }
+                }
                     System.Diagnostics.Debug.WriteLine(Constantes._M_ERROR_C_INSERTAR + ex.Message);
                     loRespuesta.pcCodigo = Constantes._M_CODIGO_VALIDACION;
                     loRespuesta.pcMensaje = Constantes._M_NO_REGISTRO;

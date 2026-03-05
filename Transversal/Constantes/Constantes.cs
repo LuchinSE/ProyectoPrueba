@@ -16,6 +16,7 @@
         public static string _M_NO_REGISTRO = "No se guardó el registro con nombre: ";
         public const string _M_REGISTRO_NO_ENCONTRADO = "El elemento solicitado no existe.";
         public const string _M_RECURSO_NO_EXISTENTE = "El recurso solicitado se encuentra vacío o no existe.";
+        public const string _M_ERROR_PROD_INEXISTENTE = "El producto ingresado no existe";
         //ERRORES CRITICOS
         public const string _M_ERROR_C_LISTAR = "Error al intentar obtener los registros";
         public const string _M_ERROR_C_ACTUALIZAR = "Error al actualizar";
@@ -25,8 +26,6 @@
         //ERRORES DE VALIDACION EN TRASLADO
         public const string _M_ERROR_STOCK_INSUFICIENTE = "Stock insuficiente para el traslado.";
         public const string _M_ERROR_PRODUCTO_NULL = "Producto no encontrado en sede origen. ";
-
-
         //PROCEDIMIENTOS ALMACENADOS
         public const string SP_PRODUCTO_CREAR = "PROC_I_INVMPRO";
         public const string SP_PRODUCTO_LISTAR = "PROC_S_INVMPRO_TraerTodo";
