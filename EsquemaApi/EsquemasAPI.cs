@@ -1,12 +1,10 @@
-﻿using Negocio.Esquemas;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
 
 
-namespace Negocio.Esquemas
+namespace EsquemaApi.EsquemasAPI
 {
-  
-    public class ProductosRQT
+ 
+        public class ProductosRQT
     {
         public ProductoCN[] paProductos { get; set; }
     }
@@ -21,25 +19,25 @@ namespace Negocio.Esquemas
 
     public class ProductoCN
     {
-        
+
         public int pnIdePro { get; set; }
         public string pcNomPro { get; set; }
         public string pcDesPro { get; set; }
         public decimal pnPrePro { get; set; }
         public int pnStoPro { get; set; }
         public DateTime ptFecPro { get; set; }
-        public int pnIdeSed { get; set;}
+        public int pnIdeSed { get; set; }
 
     }
     public class ProductoInsertarRQT
     {
- 
+
         public string pcNomPro { get; set; }
         public string pcDesPro { get; set; }
 
         public decimal pnPrePro { get; set; }
 
- 
+
         public int pnStoPro { get; set; }
         public int pnIdeSed { get; set; }
 
@@ -57,10 +55,10 @@ namespace Negocio.Esquemas
     }
 
 
-    public class ProductoActualizarRQT 
+    public class ProductoActualizarRQT
     {
         public int pnIdePro { get; set; }
-        
+
         public string pcNomPro { get; set; }
         public string pcDesPro { get; set; }
         public decimal pnPrePro { get; set; }
@@ -76,8 +74,8 @@ namespace Negocio.Esquemas
         public string pcCodigo { get; set; }
         public string pcMensaje { get; set; }
     }
-    
-    
+
+
 
     public class ProductoActualizarRPT : Error
     {
@@ -91,18 +89,18 @@ namespace Negocio.Esquemas
     }
 
     public class ProductoEliminarRQT
-    { 
+    {
         public int pnIdePro { get; set; }
-   
+
     }
 
     public class ProductoEliminarRPT : Error
     {
-        public int pnIdePro { get; set; }   
+        public int pnIdePro { get; set; }
     }
 
     public class ProductoMoverRQT
-    { 
+    {
         public string pcNomPro { get; set; }
         public int pnIdeOri { get; set; }
         public int pnIdeDes { get; set; }

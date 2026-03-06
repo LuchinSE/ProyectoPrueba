@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppProductos", "AppProducto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAProductos", "WAProdocutos\WAProductos.csproj", "{697F2836-3A5F-418B-A1F6-45C9C12CB570}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsquemaApi", "EsquemaApi\EsquemaApi.csproj", "{843D1910-7302-416F-B6A2-F04E00B76BC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{697F2836-3A5F-418B-A1F6-45C9C12CB570}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{697F2836-3A5F-418B-A1F6-45C9C12CB570}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{697F2836-3A5F-418B-A1F6-45C9C12CB570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{843D1910-7302-416F-B6A2-F04E00B76BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{843D1910-7302-416F-B6A2-F04E00B76BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{843D1910-7302-416F-B6A2-F04E00B76BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{843D1910-7302-416F-B6A2-F04E00B76BC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{5EFB7ED5-C0FB-4FEC-8586-C59C64C45D43} = {F1567234-98B2-4F60-B6A3-69C96821B432}
 		{C319CE0C-7A01-4C90-A968-08E2E955034F} = {7893D093-A88B-4221-8072-B901BEDE97BA}
 		{697F2836-3A5F-418B-A1F6-45C9C12CB570} = {EED62B46-1AE7-4319-93C4-7AF97C410E2E}
+		{843D1910-7302-416F-B6A2-F04E00B76BC7} = {F1567234-98B2-4F60-B6A3-69C96821B432}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87E59C33-8F69-43A7-9FD9-8A6C6B4DA25F}
