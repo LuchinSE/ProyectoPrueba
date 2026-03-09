@@ -64,4 +64,12 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Vistas\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\EsquemasMAUI\EsquemasMAUI.csproj" />
+	</ItemGroup>
+
 </Project>

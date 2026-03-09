@@ -7,12 +7,14 @@ using System;
 
 namespace WAProdocutos.Controllers
 {
+    [RoutePrefix("ApiProductos")]
     public class ValuesController : ApiController
     {
+
       
         [HttpGet]
-        [Route("ApiProductos/Listar")]
-        public IHttpActionResult waListarProductos()
+        [Route("rmListar")]
+        public IHttpActionResult rmListarProductos()
         {
             try
             {
@@ -44,8 +46,8 @@ namespace WAProdocutos.Controllers
             }
         }
         [HttpPost]
-        [Route("ApiProductos/Insertar")]
-        public IHttpActionResult waCrearProducto([FromBody] ProductoInsertarRQT toProductoInsRQT)
+        [Route("rmInsertar")]
+        public IHttpActionResult rmCrearProducto([FromBody] ProductoInsertarRQT toProductoInsRQT)
         {
             try
             {
@@ -79,8 +81,8 @@ namespace WAProdocutos.Controllers
         }
 
         [HttpPut]
-        [Route("ApiProductos/Actualizar")]
-        public IHttpActionResult waActualizarProducto([FromBody] ProductoActualizarRQT toProductoActRQT)
+        [Route("rmActualizar")]
+        public IHttpActionResult rmActualizarProducto([FromBody] ProductoActualizarRQT toProductoActRQT)
         {
             try
             {
@@ -116,8 +118,8 @@ namespace WAProdocutos.Controllers
         }
 
         [HttpDelete]
-        [Route("ApiProductos/Eliminar")]
-        public IHttpActionResult waEliminarProducto([FromBody] ProductoEliminarRQT toProductoEliRQT)
+        [Route("rmEliminar")]
+        public IHttpActionResult rmEliminarProducto([FromBody] ProductoEliminarRQT toProductoEliRQT)
         {
             try
             {
@@ -140,8 +142,8 @@ namespace WAProdocutos.Controllers
         }
 
         [HttpPost]
-        [Route("ApiProductos/Traslado")]
-        public IHttpActionResult waCrearTraslado([FromBody] ProMovTrasladoRQT toProductoTraRQT)
+        [Route("rmTraslado")]
+        public IHttpActionResult rmCrearTraslado([FromBody] ProMovTrasladoRQT toProductoTraRQT)
         {
             try
             {

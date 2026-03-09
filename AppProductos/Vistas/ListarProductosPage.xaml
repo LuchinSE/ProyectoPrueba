@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppProductos.Vistas.ListarProductosPage"
+             Title="Productos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="↺" Command="{Binding CargarCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <ActivityIndicator Grid.Row="0"
+                           IsRunning="{Binding EstaOcupado}"
+                           IsVisible="{Binding EstaOcupado}"
+                           HorizontalOptions="Center"
+                           Margin="0,8" />
+
+        <Label Grid.Row="0"
+               Text="{Binding Mensaje}"
+               TextColor="Red"
+               HorizontalOptions="Center"
+               Margin="0,8" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Productos}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
+                        Margin="12,0">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,6" Padding="12"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="LightGray"
+                            StrokeThickness="1">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto"
+                              RowSpacing="4">
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="{Binding pcNomPro}"
+                                   FontSize="16" FontAttributes="Bold" />
+                            <Label Grid.Row="0" Grid.Column="1"
+                                   Text="{Binding pnPrePro, StringFormat='S/. {0:N2}'}"
+                                   FontSize="16" FontAttributes="Bold"
+                                   TextColor="#2E7D32" />
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="{Binding pcDesPro}"
+                                   FontSize="13" TextColor="Gray" />
+                            <Label Grid.Row="2" Grid.Column="0"
+                                   Text="{Binding pnStoPro, StringFormat='Stock: {0}'}"
+                                   FontSize="12" TextColor="Gray" />
+                            <Label Grid.Row="2" Grid.Column="1"
+                                   Text="{Binding pnIdeSed, StringFormat='Sede: {0}'}"
+                                   FontSize="12" TextColor="Gray" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label Text="No hay productos registrados"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="Gray"
+                       Margin="0,40" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <HorizontalStackLayout Grid.Row="2"
+                               HorizontalOptions="Center"
+                               Spacing="12"
+                               Margin="12,12">
+            <Button Text="Nuevo"
+                    BackgroundColor="#1565C0" TextColor="White"
+                    CornerRadius="8" WidthRequest="100"
+                    Clicked="OnInsertarClicked" />
+            <Button x:Name="btnEditar"
+                    Text="Editar"
+                    BackgroundColor="#F57C00" TextColor="White"
+                    CornerRadius="8" WidthRequest="100"
+                    Clicked="OnActualizarClicked" />
+            <Button x:Name="btnEliminar"
+                    Text="Eliminar"
+                    BackgroundColor="#C62828" TextColor="White"
+                    CornerRadius="8" WidthRequest="100"
+                    Clicked="OnEliminarClicked" />
+            <Button Text="Trasladar"
+                    BackgroundColor="#4A148C" TextColor="White"
+                    CornerRadius="8" WidthRequest="100"
+                    Clicked="OnTrasladarClicked" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

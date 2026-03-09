@@ -22,15 +22,5 @@ namespace WAProdocutos.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/WSGestionProductos/WSGestionProductos.asmx")]
-        public string WAProdocutos_WRGestionProductos_WSGestionProductos {
-            get {
-                return ((string)(this["WAProdocutos_WRGestionProductos_WSGestionProductos"]));
-            }
-        }
     }
 }

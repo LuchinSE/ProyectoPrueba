@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppProductos.Vistas.ActualizarProductoPage"
+             Title="Editar Producto">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="20">
+
+            <Label Text="Editar Producto"
+                   FontSize="22" FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,8,0,0" />
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Nombre" FontSize="13" TextColor="Gray" />
+                <Entry Text="{Binding Nombre}" Placeholder="Nombre del producto" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Descripción" FontSize="13" TextColor="Gray" />
+                <Editor Text="{Binding Descripcion}"
+                        Placeholder="Descripción del producto"
+                        HeightRequest="80" AutoSize="TextChanges" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Precio" FontSize="13" TextColor="Gray" />
+                <Entry Text="{Binding Precio}" Placeholder="0.00" Keyboard="Numeric" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Stock" FontSize="13" TextColor="Gray" />
+                <Entry Text="{Binding Stock}" Placeholder="0" Keyboard="Numeric" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="ID Sede" FontSize="13" TextColor="Gray" />
+                <Entry Text="{Binding IdeSede}" Placeholder="ID de sede" Keyboard="Numeric" />
+            </VerticalStackLayout>
+
+            <Button Text="Actualizar"
+                    Command="{Binding ActualizarCommand}"
+                    BackgroundColor="#F57C00" TextColor="White"
+                    CornerRadius="8" HeightRequest="48"
+                    Margin="0,8" />
+
+            <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                               IsVisible="{Binding EstaOcupado}"
+                               HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
